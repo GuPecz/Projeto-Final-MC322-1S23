@@ -1,1 +1,6 @@
 Jogo de batalha por turno
+
+Sistema de acompanhar médias no semestre
+-> Usuário descreve os métodos de avaliação das disciplinas
+->    ''   insere as notas e pesos das atividades, provas, etc
+-> Uma interface gráfica exibe as notas junto com as médias
