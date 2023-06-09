@@ -1,3 +1,9 @@
+Legenda
+Sem item = ideia
+-> = Desenvolvimento da ideia
+=> = Considerações adicionais
+
+
 Jogo de batalha por turno
 
 Sistema de acompanhar médias no semestre
