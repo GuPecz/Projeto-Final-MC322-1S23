@@ -1,4 +1,4 @@
-package combat;
+package combate;
 
 public class Ataque {
 

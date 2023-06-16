@@ -1,4 +1,4 @@
-package items;
+package itens;
 
 public interface Consumivel extends Item {
 
