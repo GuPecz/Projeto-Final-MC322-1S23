@@ -1,14 +1,4 @@
-Legenda
-Sem item = ideia
--> = Desenvolvimento da ideia
-=> = Considerações adicionais
-
-
-Jogo de batalha por turno
-
-Sistema de acompanhar médias no semestre
--> Usuário descreve os métodos de avaliação das disciplinas
-->    ''   insere as notas e pesos das atividades, provas, etc
--> Uma interface gráfica exibe as notas junto com as médias
-
-=> Implementar sistema para uso dos docentes com suas turmas
+Atributo elemento
+-> Manter os três primários, fogo, água e vento para o personagem
+-> Criar os derivados, gelo, lava, natureza, etc, pros inimigos
+-> Usar um csv ou outro tipo de tabela pra guardar os multiplicadores dos ataques elementais
