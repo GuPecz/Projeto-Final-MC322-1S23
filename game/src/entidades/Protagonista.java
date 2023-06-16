@@ -1,5 +1,7 @@
 package entidades;
 
-public class Protagonista extends Personagem {
+import itens.Inventario;
 
+public class Protagonista extends Personagem {
+    private Inventario inventario;
 }

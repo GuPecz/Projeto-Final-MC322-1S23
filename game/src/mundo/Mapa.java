@@ -1,5 +1,8 @@
 package mundo;
 
-public class Mapa {
+import java.util.ArrayList;
 
+public class Mapa {
+    private int[][] conexoes;
+    private ArrayList<Sala> salas;
 }
