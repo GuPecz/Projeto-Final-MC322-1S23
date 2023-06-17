@@ -5,7 +5,7 @@ public class Armadura extends Item implements Equipavel {
      * Atributos herdados:
      * qtdUsos - quanto de dano a armadura ainda pode receber ate quebrar
      */
-    private int armaduraAdicional; // armadura q deve ser adicionada a armadura do personagem
+    private int armaduraAdicional; // armadura que deve ser adicionada a armadura do personagem
 
     /* Construtor */
     public Armadura(int qtdUsos, int armaduraAdicional) {
@@ -23,5 +23,4 @@ public class Armadura extends Item implements Equipavel {
             "\n\tarmaduraAdicional: " + String.valueOf(armaduraAdicional);
         return str;
     }
-
 }

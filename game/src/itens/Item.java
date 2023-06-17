@@ -55,8 +55,8 @@ public abstract class Item {
     public int getQtdUsos() {
         return qtdUsos;
     }
+
     public void setQtdUsos(int qtdUsos) {
         this.qtdUsos = qtdUsos;
     }
-
 }
