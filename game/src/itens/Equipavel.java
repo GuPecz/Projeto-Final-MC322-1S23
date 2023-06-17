@@ -1,5 +1,5 @@
 package itens;
 
-public interface Equipavel extends Item {
+public interface Equipavel {
 
 }
