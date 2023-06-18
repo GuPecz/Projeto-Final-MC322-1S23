@@ -7,8 +7,8 @@ public class Magia extends Ataque {
     private String elemento;
     private int custoMp;
 
-    public Magia(String nome, int danoBase, int multiplicador, String elemento, int custoMp) {
-        super(nome, danoBase, multiplicador);
+    public Magia(String nome, int danoBase, String elemento, int custoMp) {
+        super(nome, danoBase);
         this.elemento = elemento;
         this.custoMp = custoMp;
     }
