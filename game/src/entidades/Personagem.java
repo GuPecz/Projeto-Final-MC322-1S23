@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public abstract class Personagem {
     private String nome;
-    private int hp;
-    private int def;
-    private int atq;
+    private int hp; // vida - health points
+    private int def; // defesa
+    private int atq; // ataque
     private final ArrayList<Ataque> listaAtaques;
 
     /* Construtor sem ataques */
