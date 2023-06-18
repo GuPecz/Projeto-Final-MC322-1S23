@@ -12,16 +12,16 @@ public class Inimigo extends Personagem {
 
 
     /* Construtor com ataques */
-    public Inimigo(String nome, int hp, int def, int atq, Item loot, String elemento, Ataque... ataques) {
-        super(nome, hp, def, atq, ataques);
+    public Inimigo(String nome, int hp, int hpMax, int def, int atq, Item loot, String elemento, Ataque... ataques) {
+        super(nome, hp, hpMax, def, atq, ataques);
         this.loot = loot;
         this.elemento = elemento;
         //this.imagem = caminho + getNome() + ".png";
     }
 
     /* Construtor sem ataques */
-    public Inimigo(String nome, int hp, int def, int atq, Item loot, String elemento) {
-        super(nome, hp, def, atq);
+    public Inimigo(String nome, int hp, int hpMax, int def, int atq, Item loot, String elemento) {
+        super(nome, hp, hpMax, def, atq);
         this.loot = loot;
         this.elemento = elemento;
         //this.imagem = caminho + getNome() + ".png";
