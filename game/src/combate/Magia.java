@@ -1,6 +1,6 @@
 package combate;
 
-import dados.csvHandler;
+import dados.CsvHandler;
 import entidades.Inimigo;
 
 public class Magia extends Ataque {
@@ -14,10 +14,10 @@ public class Magia extends Ataque {
     }
 
     public int danoCausado(Inimigo inimigo) {
-        double multiplicador = csvHandler.getMultiplicador(elemento, inimigo.getElemento());
+        double multiplicador = CsvHandler.getMultiplicador(elemento, inimigo.getElemento());
         if (multiplicador != 0.) { // retorno padrao da funcao quando nao encontra o elemento
             // roubei do lol -- https://leagueoflegends.fandom.com/wiki/Magic_resistance?so=search
-            return (int) (getDanoBase() * multiplicador) * (100 / (100 + inimigo.getDef()));
+            return (int) ((getDanoBase() * multiplicador) * (100. / (100 + inimigo.getDef())));
         }
         return 0;
     }
