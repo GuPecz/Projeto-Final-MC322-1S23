@@ -5,6 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class CsvHandler {
+    /*
+     * retorna o multiplicador de um elemento sobre o outro
+     * PARAMETROS:
+     * elementoAtq - elemento da magia
+     * elementoDef - elemento do inimigo defendendo
+     */
     public static double getMultiplicador(String elementoAtq, String elementoDef) {
         String tabela = "game/resources/efetividade-elementos-varias-linhas.csv";
         String strLinha;
