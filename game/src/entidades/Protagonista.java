@@ -8,31 +8,23 @@ import combate.Magia;
 
 public class Protagonista extends Personagem {
     private int mp; // mana points
+    private int mpMax; // mp maximo
     private final Inventario inventario;
     private final List<Magia> listaMagias;
 
     /* Construtor */
-    public Protagonista(String nome, int hp, int def, int atq, int mp) {
-        super(nome, hp, def, atq);
+    public Protagonista(String nome, int hp, int hpMax, int def, int atq, int mp, int mpMax) {
+        super(nome, hp, hpMax, def, atq);
         this.mp = mp;
+        this.mpMax = mpMax;
         inventario = new Inventario();
         listaMagias = new ArrayList<Magia>();
     }
 
-    /*
-     * toString()
-     * Personagem:
-     *     nome: <nome>
-     *     hp: <hp>
-     *     def: <def>
-     *     atq: <atq>
-     *     listaAtaques: <ataque1.nome>, <ataque2.nome>, ...
-     *     mp: <mp>
-     *     listaMagias: <magia1.nome>, <magia2.nome>, ...
-     */
+    // toString()
     public String toString() {
         String str = super.toString().replaceFirst("Personagem", "Protagonista") +
-            "\n\tmp: " + mp + "\n\tlistaMagias:";
+            "\n\tmp: " + mp + "mpMax: " + mpMax + "\n\tlistaMagias:";
         for (Magia m: listaMagias)
             str += " " + m.getNome();
         return str;
