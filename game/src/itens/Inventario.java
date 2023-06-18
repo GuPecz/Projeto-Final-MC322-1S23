@@ -2,9 +2,12 @@ package itens;
 
 import java.util.ArrayList;
 
+import entidades.Protagonista;
+
 public class Inventario {
-    private ArrayList<Consumivel> consumiveis;
-    private int limiteConsumiveis;
-    private ArrayList<Equipavel> equipamentos;
-    private int limiteEquipaveis;
+    private Protagonista protagonista;
+    private ArrayList<Item> equipados;
+    private ArrayList<Pocao> pocoes;
+
+    
 }
