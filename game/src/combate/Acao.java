@@ -3,35 +3,45 @@ package combate;
 import entidades.Personagem;
 
 public abstract class Acao {
+    /* Atributos */
     private String nome;
     private boolean habilitado;
     private String msgUso;
 
-    // Construtor
+    /* Construtor */
     public Acao(String nome, boolean habilitado, String msgUso) {
         this.nome = nome;
         this.habilitado = habilitado;
         this.msgUso = msgUso;
     }
 
-    public abstract void usar(Personagem usuario, Personagem recebedor);
+    /*
+     * Executa a acao e retorna inteiro com informacao especifica para cada acao
+     * PARAMETROS:
+     * - usuario: personagem que realizou a acao
+     * - oponente: oponente do usuario
+     */
+    public abstract int executar(Personagem usuario, Personagem oponente);
 
+    /* Habilita o ataque */
     public void habilitar() {
         habilitado = true;
     }
 
+    /* Desabilita o ataque */
+    // TODO - remover se n estiver sendo usado
     public void desabilitar() {
         habilitado = false;
     }
 
-    // toString()
+    /* toString() */
     public String toString() {
         String str = "Acao:\n\tnome: " + nome + "\n\thabilitado: " + habilitado +
                      "\n\tmsgUso: " + msgUso;
         return str;
     }
 
-    // Getters e setters
+    /* Getters e setters */
     public String getNome() {
         return nome;
     }

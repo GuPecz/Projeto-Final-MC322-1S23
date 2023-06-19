@@ -3,39 +3,51 @@ package combate;
 import entidades.Personagem;
 
 public class Ataque extends Acao {
-    private int danoBase;
+    /* Atributos */
+    private double multiplicador;
 
-    public Ataque(String nome, boolean habilitado, String msgUso, int danoBase) {
+    /* Construtor */
+    public Ataque(String nome, boolean habilitado, String msgUso, double multiplicador) {
         super(nome, habilitado, msgUso);
-        this.danoBase = danoBase;
+        this.multiplicador = multiplicador;
     }
 
-    /* Retorna quanto de dano o alvo deve receber do ataque */
-    public int danoCausado(Personagem alvo) {
-        return (int) (danoBase * (100. / (100 + alvo.getDef())));
+    /* 
+     * Retorna quanto de dano o ataque deve causar
+     * PARAMETROS:
+     * - alvo: personagem que receberá o dano
+     */
+    private int danoCausado(Personagem alvo) {
+        return (int) (multiplicador * (100. / (100 + alvo.getDef())));
     }
 
+    /*
+     * Executa o ataque (causa dano ao oponente) e retorna o dano causado
+     * PARAMETROS:
+     * - usuario: quem usou o ataque
+     * - oponente: oponente do usuario
+     */
     @Override
-    public void usar(Personagem usuario, Personagem recebedor) {
-                
+    public int executar(Personagem usuario, Personagem oponente) {
+        int dano = danoCausado(oponente);
+        oponente.reduzirVida(dano);
+        return dano;
     }
 
-    // toString()
+    /* toString() */
     public String toString() {
         String str = super.toString().replaceFirst("Acao", "Ataque");
-        str += "\n\tdanoBase: " + danoBase;
+        str += "\n\tmultiplicador: " + multiplicador;
         return str;
     }
 
-    // Getters e setters
-    public int getDanoBase() {
-        return danoBase;
+    /* Getters e setters */
+    public double getMultiplicador() {
+        return multiplicador;
     }
 
-    public void setDanoBase(int danoBase) {
-        this.danoBase = danoBase;
+    public void setMultiplicador(double multiplicador) {
+        this.multiplicador = multiplicador;
     }
-
-
 
 }

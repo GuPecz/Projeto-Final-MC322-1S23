@@ -4,6 +4,7 @@ import combate.Acao;
 import java.util.List;
 
 public abstract class Personagem {
+    /* Atributos */
     private String nome;
     private int hp; // vida - health points
     private int hpMax; // vida maxima
@@ -14,10 +15,9 @@ public abstract class Personagem {
     private final List<Acao> listaAcoes;
 
     /* Construtor sem ataques */
-    public Personagem(String nome, int hp, int hpMax, int def, int atq, List<Acao> listaAcoes) {
+    public Personagem(String nome, int hpMax, int def, int atq, List<Acao> listaAcoes) {
         this.nome = nome;
-        this.hp = hp;
-        this.hpMax = hpMax;
+        this.hp = this.hpMax = hpMax;
         this.def = this.defAtual = def;
         this.defAtual = def;
         this.atq = this.atqAtual = atq;
@@ -88,7 +88,7 @@ public abstract class Personagem {
         return hp > 0;
     }
 
-    // toString()
+    /* toString() */
     public String toString() {
         String str = String.format("Personagem:\n\tnome: %s\n\thp: %d\n\thpMax: %d\n\tdef: %d\n\t" +
             "\n\tdefAtual: %d\n\tatq: %d\n\tatqAtual: %d\n\tlistaAcoes:", nome, hp, hpMax, def,
@@ -99,7 +99,7 @@ public abstract class Personagem {
     }
 
 
-    // Getters e setters
+    /* Getters e setters */
     public int getAtq() {
         return atq;
     }

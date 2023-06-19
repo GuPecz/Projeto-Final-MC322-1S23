@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entidades.Personagem;
-import entidades.Protagonista;
 import combate.Ataque;
 import combate.Buff;
 import combate.Debuff;
@@ -40,10 +38,12 @@ public class CsvHandler {
 
     /*
      * Retorna uma lista com os ataques do personagem
+     * PARAMETROS:
+     * - nomePersonagem: nome do personagem
      */
     public static List<Ataque> getAtaques(String nomePersonagem) {
         List<Ataque> listaAtaques = new ArrayList<Ataque>();
-        // csv com: [0] personagem, [1] nomeAtaque, [2] danoBase, [3] habilitado, [4] msgUso
+        // csv com: [0] personagem, [1] nomeAtaque, [2] multiplicador, [3] habilitado, [4] msgUso
         String tabela = "game/resources/ataques.csv";
         String strLinha;
         try (BufferedReader br = new BufferedReader(new FileReader(tabela))) {
@@ -51,8 +51,9 @@ public class CsvHandler {
             while ((strLinha = br.readLine()) != null) {
                 String[] linha = strLinha.split(",");
                 if (linha[0].equals(nomePersonagem))
+                    // replaceAll("]", ",") para deixar msg com vírgula
                     listaAtaques.add(new Ataque(linha[1], Boolean.parseBoolean(linha[3]), 
-                        linha[4].replaceAll("]", ","), Integer.parseInt(linha[2])));
+                        linha[4].replaceAll("]", ","), Double.parseDouble(linha[2])));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,25 +63,28 @@ public class CsvHandler {
 
     /*
      * Retorna uma lista com os efeitos de status do personagem
+     * PARAMETROS:
+     * - nomePersonagem: nome do personagem
      */
     public static List<EfeitoStatus> getEfeitosStatus(String nomePersonagem) {
         List<EfeitoStatus> listaEfeitoStatus = new ArrayList<EfeitoStatus>();
         // csv com: [0] personagem, [1] tipoEfeito, [2] nomeEfeito, [3] habilitado,
-        // [4] alteracaoAtq, [5] alteracaoDef, [6] msgUso
+        // [4] alteracaoStatus, [5] msgUso
         String tabela = "game/resources/efeitos-status.csv";
         String strLinha;
         try (BufferedReader br = new BufferedReader(new FileReader(tabela))) {
             br.readLine(); // pular primeira linha
             while ((strLinha = br.readLine()) != null) {
                 String[] linha = strLinha.split(",");
+                // buff
                 if (linha[0].equals(nomePersonagem) && linha[1].equals("buff"))
+                    // replaceAll("]", ",") para deixar msg com vírgula
                     listaEfeitoStatus.add(new Buff(linha[2].replaceAll("]", ","),
-                        Boolean.valueOf(linha[3]), linha[6], Integer.valueOf(linha[4]),
-                        Integer.valueOf(linha[5])));
+                        Boolean.valueOf(linha[3]), linha[5], Integer.valueOf(linha[4])));
+                // debuff
                 else if (linha[0].equals(nomePersonagem))
                     listaEfeitoStatus.add(new Debuff(linha[2].replaceAll("]", ","),
-                        Boolean.valueOf(linha[3]), linha[6], Integer.valueOf(linha[4]),
-                        Integer.valueOf(linha[5])));
+                        Boolean.valueOf(linha[3]), linha[5], Integer.valueOf(linha[4])));
             }
         } catch (IOException e) {
             e.printStackTrace();
