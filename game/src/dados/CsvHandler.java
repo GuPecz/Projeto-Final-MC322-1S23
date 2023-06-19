@@ -88,4 +88,33 @@ public class CsvHandler {
         return listaEfeitoStatus;
     }
 
+    /*
+     * Retorna um vetor com os dados para inicialização do inimigo todos como String, 
+     * ints precisam ser convertidos
+     */
+    public static String[] getDadosInimigo(String nomeInimigo) {
+        String[] dados = new String[]{};
+        // csv com: [0] nome, [1] hpMax, [2] def, [3] atq, [4] item, [5] elemento
+        String tabela = "game/resources/dados-inimigos.csv";
+        String strLinha;
+        try (BufferedReader br = new BufferedReader(new FileReader(tabela))) {
+        br.readLine(); // pular primeira linha
+            while ((strLinha = br.readLine()) != null) {
+                String[] linha = strLinha.split(",");
+                if (linha[0].equals(nomeInimigo)) {
+                    if (!linha[5].equals("random"))
+                        dados = linha;
+                    else {
+                        // Implementar seleção aleatória de elemento para os lacaios
+                        linha[5] = "elemento aleatório";
+                        dados = linha;
+                    }
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return dados;
+    }
 }
