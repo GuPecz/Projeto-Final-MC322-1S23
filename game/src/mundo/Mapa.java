@@ -1,7 +1,7 @@
 package mundo;
 
 public class Mapa {
-    private int ordem; // Ordem da matriz de salas
+    private int ordem; // Ordem da matriz quadrada de salas
     private Sala[][] salas;
 
     public Mapa(int ordem) {
