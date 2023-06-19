@@ -3,7 +3,7 @@ package entidades;
 import java.util.ArrayList;
 import java.util.List;
 import itens.Inventario;
-import combate.Ataque;
+import combate.Acao;
 import combate.Magia;
 
 public class Protagonista extends Personagem {
@@ -13,8 +13,9 @@ public class Protagonista extends Personagem {
     private final List<Magia> listaMagias;
 
     /* Construtor */
-    public Protagonista(String nome, int hp, int hpMax, int def, int atq, int mp, int mpMax) {
-        super(nome, hp, hpMax, def, atq);
+    public Protagonista(String nome, int hp, int hpMax, int def, int atq, int mp, int mpMax,
+            List<Acao> listaAcoes) {
+        super(nome, hp, hpMax, def, atq, listaAcoes);
         this.mp = mp;
         this.mpMax = mpMax;
         inventario = new Inventario();

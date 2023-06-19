@@ -1,6 +1,8 @@
 package entidades;
 
-import combate.Ataque;
+import java.util.List;
+import combate.Acao;
+import dados.CsvHandler;
 import itens.Item;
 
 public class Inimigo extends Personagem {
@@ -9,35 +11,17 @@ public class Inimigo extends Personagem {
     // TODO - guardar imagem do inimigo como atributo
     // private final Imagem? imagem;
 
-
-
     /* Construtor com ataques */
-    public Inimigo(String nome, int hp, int hpMax, int def, int atq, Item loot, String elemento, Ataque... ataques) {
-        super(nome, hp, hpMax, def, atq, ataques);
+    public Inimigo(String nome, int hp, int hpMax, int def, int atq, Item loot, String elemento,
+            List<Acao> listaAcoes) {
+        super(nome, hp, hpMax, def, atq, listaAcoes);
         this.loot = loot;
         this.elemento = elemento;
+        getListaAcoes().addAll(CsvHandler.getAtaques(this));
         //this.imagem = caminho + getNome() + ".png";
     }
 
-    /* Construtor sem ataques */
-    public Inimigo(String nome, int hp, int hpMax, int def, int atq, Item loot, String elemento) {
-        super(nome, hp, hpMax, def, atq);
-        this.loot = loot;
-        this.elemento = elemento;
-        //this.imagem = caminho + getNome() + ".png";
-    }
-
-    /*
-     * toString()
-     * Inimigo:
-     *     nome: <nome>
-     *     hp: <hp>
-     *     def: <def>
-     *     atq: <atq>
-     *     listaAtaques: <ataque1.nome>, <ataque2.nome>, ...
-     *     loot: <loot.getClass()>
-     *     elemento: <elemento>
-     */
+    // toString()
     public String toString() {
         String str = super.toString().replaceFirst("Personagem", "Inimigo") +
             "\n\tloot: " + loot.getClass() + "\n\telemento: " + elemento;

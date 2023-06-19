@@ -1,31 +1,27 @@
 package entidades;
 
-import combate.Ataque;
-import java.util.ArrayList;
+import combate.Acao;
+import java.util.List;
 
 public abstract class Personagem {
     private String nome;
     private int hp; // vida - health points
     private int hpMax; // vida maxima
     private int def; // defesa
+    private int defAtual;
     private int atq; // ataque
-    private final ArrayList<Ataque> listaAtaques;
+    private int atqAtual;
+    private final List<Acao> listaAcoes;
 
     /* Construtor sem ataques */
-    public Personagem(String nome, int hp, int hpMax, int def, int atq) {
+    public Personagem(String nome, int hp, int hpMax, int def, int atq, List<Acao> listaAcoes) {
         this.nome = nome;
         this.hp = hp;
         this.hpMax = hpMax;
-        this.def = def;
-        this.atq = atq;
-        listaAtaques = new ArrayList<Ataque>();
-    }
-
-    /* Construtor com ataques */
-    public Personagem(String nome, int hp, int hpMax, int def, int atq, Ataque... ataques) {
-        this(nome, hp, hpMax, def, atq);
-        for (Ataque ataque: ataques)
-            listaAtaques.add(ataque);
+        this.def = this.defAtual = def;
+        this.defAtual = def;
+        this.atq = this.atqAtual = atq;
+        this.listaAcoes = listaAcoes;
     }
 
     /*
@@ -62,6 +58,8 @@ public abstract class Personagem {
      */
     public void reduzirDefesa(int defesa) {
         def -= defesa;
+        if (this.def <= 0)
+            this.def = 1;
     }
 
     /*
@@ -78,8 +76,10 @@ public abstract class Personagem {
      * PARAMETROS:
      * atq -- quantidade a ser reduzida
      */
-    public void reduzitAtq(int atq) {
+    public void reduzirAtq(int atq) {
         this.atq -= atq;
+        if (this.atq <= 0)
+            this.atq = 1;
     }
 
     /* Retorna boolean indicando se o personagem esta vivo */
@@ -91,9 +91,10 @@ public abstract class Personagem {
     // toString()
     public String toString() {
         String str = String.format("Personagem:\n\tnome: %s\n\thp: %d\n\thpMax: %d\n\tdef: %d\n\t" +
-            "atq: %d\n\tlistaAtaques:", nome, hp, hpMax, def, atq);
-        for (Ataque ataque: listaAtaques)
-            str += " " + ataque.getNome();
+            "\n\tdefAtual: %d\n\tatq: %d\n\tatqAtual: %d\n\tlistaAcoes:", nome, hp, hpMax, def,
+            defAtual, atq, atqAtual);
+        for (Acao acao: listaAcoes)
+            str += " " + acao.getNome();
         return str;
     }
 
@@ -103,20 +104,20 @@ public abstract class Personagem {
         return atq;
     }
 
-    public void setAtq(int ataque) {
-        this.atq = ataque;
+    public void setAtq(int atq) {
+        this.atq = atq;
     }
 
-    public ArrayList<Ataque> getListaAtaques() {
-        return listaAtaques;
+    public List<Acao> getListaAcoes() {
+        return listaAcoes;
     }
 
     public int getDef() {
         return def;
     }
     
-    public void setDef(int defesa) {
-        this.def = defesa;
+    public void setDef(int def) {
+        this.def = def;
     }
     
     public String getNome() {
@@ -129,6 +130,22 @@ public abstract class Personagem {
 
     public int getHp() {
         return hp;
+    }
+
+    public void setAtqAtual(int atqAtual) {
+        this.atqAtual = atqAtual;
+    }
+
+    public int getAtqAtual() {
+        return atqAtual;
+    }
+
+    public void setDefAtual(int defAtual) {
+        this.defAtual = defAtual;
+    }
+
+    public int getDefAtual() {
+        return defAtual;
     }
 
     public void setHp(int vida) {
