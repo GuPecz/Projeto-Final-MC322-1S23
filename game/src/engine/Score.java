@@ -1,12 +1,13 @@
 package engine;
 
 import java.util.ArrayList;
-import itens.Item;
+//import itens.Item;
 
 public class Score {
+    /* Atributos */
     private static int inimigosEliminados;
     private static int danoRecebido;
     private static int danoCausado;
     private static int qtdSalasVisitadas;
-    private static ArrayList<Item> lootColetado;
+    //private static ArrayList<Item> lootColetado;
 }

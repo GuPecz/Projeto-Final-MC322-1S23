@@ -1,34 +1,53 @@
 package combate;
 
-import entidades.Inimigo;
+import entidades.Personagem;
 
-public abstract class Ataque {
-    private String nome;
-    private int danoBase;
+public class Ataque extends Acao {
+    /* Atributos */
+    private double multiplicador;
 
-    public Ataque(String nome, int danoBase) {
-        this.nome = nome;
-        this.danoBase = danoBase;
+    /* Construtor */
+    public Ataque(String nome, boolean habilitado, String msgUso, double multiplicador) {
+        super(nome, habilitado, msgUso);
+        this.multiplicador = multiplicador;
     }
 
-    /* Retorna quanto de dano o inimigo deve receber do ataque */
-    public abstract int danoCausado(Inimigo inimigo);
-
-    // Getters e setters
-    public String getNome() {
-        return nome;
-    }
-    
-    public void setNome(String nome) {
-        this.nome = nome;
+    /* 
+     * Retorna quanto de dano o ataque deve causar
+     * PARAMETROS:
+     * - alvo: personagem que receberá o dano
+     */
+    private int danoCausado(Personagem alvo) {
+        return (int) (multiplicador * (100. / (100 + alvo.getDef())));
     }
 
-    public int getDanoBase() {
-        return danoBase;
+    /*
+     * Executa o ataque (causa dano ao oponente) e retorna o dano causado
+     * PARAMETROS:
+     * - usuario: quem usou o ataque
+     * - oponente: oponente do usuario
+     */
+    @Override
+    public int executar(Personagem usuario, Personagem oponente) {
+        int dano = danoCausado(oponente);
+        oponente.reduzirVida(dano);
+        return dano;
     }
 
-    public void setDanoBase(int danoBase) {
-        this.danoBase = danoBase;
+    /* toString() */
+    public String toString() {
+        String str = super.toString().replaceFirst("Acao", "Ataque");
+        str += "\n\tmultiplicador: " + multiplicador;
+        return str;
+    }
+
+    /* Getters e setters */
+    public double getMultiplicador() {
+        return multiplicador;
+    }
+
+    public void setMultiplicador(double multiplicador) {
+        this.multiplicador = multiplicador;
     }
 
 }

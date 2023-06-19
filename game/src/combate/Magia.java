@@ -2,29 +2,49 @@ package combate;
 
 import dados.CsvHandler;
 import entidades.Inimigo;
+import entidades.Personagem;
 
 public class Magia extends Ataque {
+    /* Atributos */
+    private int danoBase;
     private String elemento;
     private int custoMp;
 
-    public Magia(String nome, int danoBase, String elemento, int custoMp) {
-        super(nome, danoBase);
+    /* Construtor */
+    public Magia(String nome, String msgUso, String elemento, int custoMp) {
+        super(nome, false, msgUso, 0.); // inicia desabilitada (ate achar scroll)
         this.elemento = elemento;
         this.custoMp = custoMp;
     }
 
-    public int danoCausado(Inimigo inimigo) {
-        double multiplicador = CsvHandler.getMultiplicador(elemento, inimigo.getElemento());
-        if (multiplicador != 0.) { // retorno padrao da funcao quando nao encontra o elemento
-            // roubei do lol -- https://leagueoflegends.fandom.com/wiki/Magic_resistance?so=search
-            return (int) ((getDanoBase() * multiplicador) * (100. / (100 + inimigo.getDef())));
-        }
-        return 0;
+    /* 
+     * Retorna quanto de dano a magia deve causar
+     * PARAMETROS:
+     * - alvo: personagem que receberá o dano
+     */
+    private int danoCausado(Personagem alvo) {
+        // obtém o multiplicador de dano sobre o elemento do inimigo
+        // TODO - multiplicador pode acabar sendo zero se elemento nao estiver no arquivo, tomar cuidado
+        setMultiplicador(CsvHandler.getMultiplicador(elemento, ((Inimigo)alvo).getElemento()));
+        // calculo do dano causado: (dano * multiplicador) * (100 / (100 + def))
+        int danoCausado = (int) ((danoBase * getMultiplicador()) * (100 / (100 + alvo.getDefAtual())));;
+        return danoCausado;
     }
 
+    /*
+     * Executa a magia (causa dano ao inimigo)
+     * PARAMETROS:
+     * - usuario: personagem que usou a magia (Protagonista)
+     * - recebedor: personagem que receberá o dano
+     */
+    @Override
+    public int executar(Personagem usuario, Personagem oponente) {
+        int dano = danoCausado(oponente);
+        oponente.reduzirVida(dano);
+        return dano;
+    }
 
-
-    // Getters e setters
+    /* Getters e setters */
     public String getElemento() {
         return elemento;
     }

@@ -1,55 +1,39 @@
 package entidades;
 
-import combate.Ataque;
-import itens.Item;
+import java.util.List;
+import combate.Acao;
+import dados.CsvHandler;
 
 public class Inimigo extends Personagem {
-    private Item loot;
+    /* Atributos */
+    private String loot;
     private final String elemento;
     // TODO - guardar imagem do inimigo como atributo
     // private final Imagem? imagem;
 
-
-
-    /* Construtor com ataques */
-    public Inimigo(String nome, int hp, int hpMax, int def, int atq, Item loot, String elemento, Ataque... ataques) {
-        super(nome, hp, hpMax, def, atq, ataques);
+    /* Construtor */
+    public Inimigo(String nome, int hpMax, int def, int atq, String loot, String elemento,
+            List<Acao> listaAcoes) {
+        super(nome, hpMax, def, atq, listaAcoes);
         this.loot = loot;
         this.elemento = elemento;
+        getListaAcoes().addAll(CsvHandler.getAtaques(nome));
         //this.imagem = caminho + getNome() + ".png";
     }
 
-    /* Construtor sem ataques */
-    public Inimigo(String nome, int hp, int hpMax, int def, int atq, Item loot, String elemento) {
-        super(nome, hp, hpMax, def, atq);
-        this.loot = loot;
-        this.elemento = elemento;
-        //this.imagem = caminho + getNome() + ".png";
-    }
-
-    /*
-     * toString()
-     * Inimigo:
-     *     nome: <nome>
-     *     hp: <hp>
-     *     def: <def>
-     *     atq: <atq>
-     *     listaAtaques: <ataque1.nome>, <ataque2.nome>, ...
-     *     loot: <loot.getClass()>
-     *     elemento: <elemento>
-     */
+    /* toString() */
     public String toString() {
         String str = super.toString().replaceFirst("Personagem", "Inimigo") +
             "\n\tloot: " + loot.getClass() + "\n\telemento: " + elemento;
         return str;
     }
 
-    // Getters e setters
-    public Item getLoot() {
+    /* Getters e setters */
+    public String getLoot() {
         return loot;
     }
 
-    public void setLoot(Item loot) {
+    public void setLoot(String loot) {
         this.loot = loot;
     }
 
