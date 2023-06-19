@@ -2,27 +2,18 @@ package mundo;
 
 public class Mapa {
     private int ordem; // Ordem da matriz quadrada de salas
+    private int localizacaoProtagonista;
     private Sala[][] salas;
 
+    /* Construtor */
     public Mapa(int ordem) {
         this.ordem = ordem;
         this.salas = new Sala[ordem][ordem];
+        this.localizacaoProtagonista = 1; // Protagonista começa na sala 1
         inicializaSalas();
     }
 
-    /*
-    * Inicializa o número identificador de cada sala,
-    * conforme o índice da mesma na matriz linearizada
-    * e com indexação a partir do 1
-    *
-    * TODO: Inicializar o conteúdo de cada sala
-    */
-    private void inicializaSalas() {
-        for (int i = 0; i < ordem; i++)
-            for (int j = 0; j < ordem; j++)
-                salas[i][j] = new Sala((ordem * i + j) + 1);
-    }
-
+    /* Getters e setters */
     public int getOrdem() {
         return ordem;
     }
@@ -35,13 +26,33 @@ public class Mapa {
         return salas;
     }
 
+    public int getLocalizacaoProtagonista() {
+        return localizacaoProtagonista;
+    }
+
+    public void setLocalizacaoProtagonista(int localizacaoProtagonista) {
+        this.localizacaoProtagonista = localizacaoProtagonista;
+    }
+
+    /*
+     * Inicializa o número identificador de cada sala,
+     * conforme o índice da mesma na matriz linearizada
+     * e com indexação a partir do 1
+     *
+     * TODO: Inicializar o conteúdo de cada sala
+     */
+    private void inicializaSalas() {
+        for (int i = 0; i < ordem; i++)
+            for (int j = 0; j < ordem; j++)
+                salas[i][j] = new Sala((ordem * i + j) + 1);
+    }
+
     /*
      * Retorna as conexões de uma sala
      * PARAMETROS:
      * id = id da sala
      */
-    public int[] getConexoes(int id)
-    {
+    public int[] getConexoes(int id) {
         /*
          * Toda sala tem no máximo 4 conexões, neste
          * vetor são representadas os (índices + 1)
@@ -49,7 +60,7 @@ public class Mapa {
          * 
          * -1 = não existe conexão
          */
-        int[] conexoes = new int[]{-1, -1, -1, -1};
+        int[] conexoes = new int[] { -1, -1, -1, -1 };
         /*
          * Ex.: Matriz de ordem 3
          * 0 1 2 | [2,1] = 7
@@ -66,7 +77,7 @@ public class Mapa {
         // Checando leste
         if (coluna < ordem - 1)
             conexoes[1] = salas[linha][coluna + 1].getId();
-        
+
         // Checando sul
         if (linha < ordem - 1)
             conexoes[2] = salas[linha + 1][coluna].getId();
@@ -78,11 +89,19 @@ public class Mapa {
         return conexoes;
     }
 
+    /*
+     * Move o personagem de uma sala para outra
+     * PARAMETROS
+     * destino = id da sala de destino
+     */
+    public void moverPersonagem(int destino) {
+        localizacaoProtagonista = destino;
+    }
+
     // Testes
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Mapa mapa = new Mapa(7);
-        
+
         // Testando os índices das salas
         for (int i = 0; i < mapa.getOrdem(); i++) {
             for (int j = 0; j < mapa.getOrdem(); j++) {
