@@ -13,19 +13,7 @@ public class Mapa {
         inicializaSalas();
     }
     
-    /*
-    * Inicializa o número identificador de cada sala,
-    * conforme o índice da mesma na matriz linearizada
-    * e com indexação a partir do 1
-    *
-    * TODO: Inicializar o conteúdo de cada sala
-    */
-    private void inicializaSalas() {
-        for (int i = 0; i < ordem; i++)
-        for (int j = 0; j < ordem; j++)
-        salas[i][j] = new Sala((ordem * i + j) + 1);
-    }
-
+    
     /* Getters e setters */
     public int getOrdem() {
         return ordem;
@@ -38,13 +26,26 @@ public class Mapa {
     public Sala[][] getSalas() {
         return salas;
     }
-
+    
     public int getLocalizacaoProtagonista() {
         return localizacaoProtagonista;
     }
-
+    
     public void setLocalizacaoProtagonista(int localizacaoProtagonista) {
         this.localizacaoProtagonista = localizacaoProtagonista;
+    }
+    
+    /*
+    * Inicializa o número identificador de cada sala,
+    * conforme o índice da mesma na matriz linearizada
+    * e com indexação a partir do 1
+    *
+    * TODO: Inicializar o conteúdo de cada sala
+    */
+    private void inicializaSalas() {
+        for (int i = 0; i < ordem; i++)
+        for (int j = 0; j < ordem; j++)
+        salas[i][j] = new Sala((ordem * i + j) + 1);
     }
     
     /*
