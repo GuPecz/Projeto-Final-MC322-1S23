@@ -1,8 +1,8 @@
-  ,0            ,1           ,2       ,3           ,4          ,5 ,6
-0 ,             ,Flecha      ,        ,            ,Discípulo  ,  ,
-1 ,Flecha       ,            ,FffFfff ,            ,           ,  ,
-2 ,Discípulo    ,            ,Espada  ,Poção de HP ,           ,  ,
-3 ,             ,Ganancioso  ,        ,            ,Assobiador ,  ,
-4 ,             ,            ,        ,Flecha      ,           ,  ,
-5 ,Empreendedor ,            ,        ,            ,           ,  ,Poção de MP
-6 ,             ,Poção de HP ,        ,            ,           ,  ,Ancião
+,0,1,2,3,4,5,6
+0,,Flecha,,Empreendedor,,Ganancioso,
+1,Flecha,,,,FffFfff,,Flecha
+2,Discípulo,,Espada,Poção de HP,,Flecha,
+3,,,Flecha,,Assobiador,,
+4,Poção de MP,,,Flecha,,,Empreendedor
+5,,FfffFfff,,,Flecha,,Poção de MP
+6,Discípulo,Poção de HP,,Flecha,,,Ancião
