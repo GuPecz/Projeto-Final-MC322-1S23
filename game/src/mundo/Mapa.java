@@ -1,5 +1,8 @@
 package mundo;
 
+import dados.CsvHandler;
+import entidades.Inimigo;
+
 public class Mapa {
     private int ordem; // Ordem da matriz quadrada de salas
     private int localizacaoProtagonista;
@@ -39,12 +42,33 @@ public class Mapa {
      * conforme o índice da mesma na matriz linearizada
      * e com indexação a partir do 1
      *
-     * TODO: Inicializar o conteúdo de cada sala
+     * TODO: Resolver o problema da listaAcoes do Inimigo, CsvHandler retorna listaAtaques
      */
     private void inicializaSalas() {
+        String[][] dados = CsvHandler.getDadosSalas();
+        /*
+         * dados[i][j] = "", se a sala for vazia
+         *               "classe do conteúdo-nome do conteúdo", se a sala possuir um item ou inimigo
+         */
+        String[] conteudo;
         for (int i = 0; i < ordem; i++)
-            for (int j = 0; j < ordem; j++)
-                salas[i][j] = new Sala((ordem * i + j) + 1);
+            for (int j = 0; j < ordem; j++) {
+                conteudo = dados[i][j].split("-");
+                switch (conteudo[0]) {
+                    case "item":
+                    salas[i][j] = new Sala((ordem * i + j) + 1, conteudo[1], null);
+                    break;
+
+                    case "inimigo":
+                    String[] dadosInimigo = CsvHandler.getDadosInimigo(conteudo[1]);
+                    salas[i][j] = new Sala((ordem * i + j) + 1, "", new Inimigo(dadosInimigo[0], Integer.parseInt(dadosInimigo[1]), Integer.parseInt(dadosInimigo[2]), Integer.parseInt(dadosInimigo[3]), dadosInimigo[4], dadosInimigo[5], null));
+                    break;
+
+                    default:
+                    salas[i][j] = new Sala((ordem * i + j) + 1, "", null);
+                    break;
+                }
+            }
     }
 
     /*
