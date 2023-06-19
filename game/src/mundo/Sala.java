@@ -8,7 +8,7 @@ public class Sala {
     private String item;    
     private Inimigo inimigo;
     
-    public Sala(int id) {
+    public Sala(int id, String item, Inimigo inimigo) {
         this.id = id;
         this.item = null;
         this.inimigo = null;
