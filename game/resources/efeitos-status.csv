@@ -1,7 +1,7 @@
-personagem,tipoEfeito,nomeEfeito,habilitado,alteracaoAtq,alteracaoDef,msgUso
-Assobiador,debuff,Serenata,true,30,30,"O Assobiador te deixa com sono apos assobiar uma serenata] reduzindo seus status!"
-Anciao,debuff,Referencial nao inercial,true,30,30,"O Anciao te coloca em um referencial nao-inercial] reduzindo seus status!"
-Anciao,buff,Centro de momento,true,30,30,"O Anciao altera o proprio centro de momento] aumentando seus status!"
-Ganancioso,buff,Investimento,true,30,30,"O Ganancioso faz um investimento] aumentando os proprios status!"
-Ganancioso,debuff,Story,true,30,30,"O Ganancioso te expoe nos Stories] reduzindo seus status!"
-Lacaio,debuff,Provocar,true,10,10,"O Lacaio te provoca] reduzindo seus status!"
+personagem,tipoEfeito,nomeEfeito,habilitado,alteracaoStatus,msgUso
+Assobiador,debuff,Serenata,true,30,"O Assobiador te deixa com sono apos assobiar uma serenata] reduzindo seus status!"
+Anciao,debuff,Referencial nao inercial,true,25,"O Anciao te coloca em um referencial nao-inercial] reduzindo seus status!"
+Anciao,buff,Centro de momento,true,15,"O Anciao altera o proprio centro de momento] aumentando seus status!"
+Ganancioso,buff,Investimento,true,20,"O Ganancioso faz um investimento] aumentando os proprios status!"
+Ganancioso,debuff,Story,true,20,"O Ganancioso te expoe nos Stories] reduzindo seus status!"
+Lacaio,debuff,Provocar,true,10,"O Lacaio te provoca] reduzindo seus status!"
