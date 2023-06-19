@@ -1,30 +1,22 @@
 package combate;
 
 public abstract class EfeitoStatus extends Acao {
-    private int alteracaoAtq;
-    private int alteracaoDef;
+    /* Atributos */
+    private int alteracaoStatus;
 
-    public EfeitoStatus(String nome, boolean habilitado, String msgUso, int alteracaoAtq, int alteracaoDef) {
+    /* Construtor */
+    public EfeitoStatus(String nome, boolean habilitado, String msgUso, int alteracaoStatus) {
         super(nome, habilitado, msgUso);
-        this.alteracaoAtq = alteracaoAtq;
-        this.alteracaoDef = alteracaoDef;
+        this.alteracaoStatus = alteracaoStatus;
     }
 
-    // Getters e setters
-    public int getAlteracaoAtq() {
-        return alteracaoAtq;
+    /* Getters e setters */
+    public int getAlteracaoStatus() {
+        return alteracaoStatus;
     }
 
-    public void setAlteracaoAtq(int alteracaoAtq) {
-        this.alteracaoAtq = alteracaoAtq;
-    }
-
-    public int getAlteracaoDef() {
-        return alteracaoDef;
-    }
-
-    public void setAlteracaoDef(int alteracaoDef) {
-        this.alteracaoDef = alteracaoDef;
+    public void setAlteracaoStatus(int alteracaoStatus) {
+        this.alteracaoStatus = alteracaoStatus;
     }
 
 }
