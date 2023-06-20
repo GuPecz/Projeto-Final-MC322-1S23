@@ -1,7 +1,7 @@
-                 ,item-Flecha        ,inimigo-Discípulo ,escada           ,                 ,inimigo-FfffFffff    ,inimigo-Assobiador
-escada           ,inimigo-Ganancioso ,                  ,escada           ,                 ,item-Flecha          ,item-Flecha
-escada           ,item-Espada        ,                  ,inimigo-FfffFfff ,item-Poção de HP ,escada               ,item-Flecha
-                 ,escada             ,item-Flecha       ,                 ,                 ,escada               ,
-item-Poção de MP ,escada             ,                  ,item-Flecha      ,                 ,inimigo-Empreendedor ,escada
-escada           ,inimigo-FffFfff    ,item-Poção de MP  ,                 ,item-Flecha      ,                     ,escada
-escada           ,inimigo-Discípulo  ,item-Poção de HP  ,                 ,item-Flecha      ,                     ,inimigo-Ancião
+,item-Flecha,inimigo-Discípulo,escada,,inimigo-FfffFffff,inimigo-Assobiador
+escada,inimigo-Ganancioso,,escada,,item-Flecha,item-Flecha
+escada,item-Espada,,inimigo-FfffFfff,item-Poção de HP,escada,item-Flecha
+,escada,item-Flecha,,,escada,
+item-Poção de MP,escada,,item-Flecha,,inimigo-Empreendedor,escada
+escada,inimigo-FffFfff,item-Poção de MP,,item-Flecha,,escada
+escada,inimigo-Discípulo,item-Poção de HP,,item-Flecha,,inimigo-Ancião
