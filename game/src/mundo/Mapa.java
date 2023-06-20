@@ -11,22 +11,24 @@ import entidades.Inimigo;
 
 public class Mapa {
     private int ordem; // Ordem da matriz quadrada de salas
-    private int localizacaoProtagonista;
     private Sala[][] salas;
-
+    private int[] localizacaoProtagonista; // Coordenada da localização do protagonista no mapa    
+    
     /* Construtor */
     public Mapa(int ordem) {
         this.ordem = ordem;
         this.salas = new Sala[ordem][ordem];
-        this.localizacaoProtagonista = 1; // Protagonista começa na sala 1
+        // Protagonista começa na sala [0][0]
+        this.localizacaoProtagonista[0] = 0;
+        this.localizacaoProtagonista[1] = 0;
         inicializaSalas();
     }
-
+    
     /* Getters e setters */
     public int getOrdem() {
         return ordem;
     }
-
+    
     public void setOrdem(int ordem) {
         this.ordem = ordem;
     }
@@ -34,34 +36,33 @@ public class Mapa {
     public Sala[][] getSalas() {
         return salas;
     }
-
-    public int getLocalizacaoProtagonista() {
+    
+    public int[] getLocalizacaoProtagonista() {
         return localizacaoProtagonista;
     }
 
-    public void setLocalizacaoProtagonista(int localizacaoProtagonista) {
+    public void setLocalizacaoProtagonista(int[] localizacaoProtagonista) {
         this.localizacaoProtagonista = localizacaoProtagonista;
     }
 
     /*
-     * Inicializa as salas com seu id na matriz linearizada
-     * indexado a partir de 1 e com seu conteúdo, caso tenha
+     * Inicializa as salas com seus conteúdos
      */
     private void inicializaSalas() {
         String[][] dados = CsvHandler.getDadosSalas(ordem);
         String[] conteudo;
         /*
-         * dados[i][j] = "", se a sala ij for vazia
-         *               "classe do conteúdo-nome do conteúdo", se a sala ij possuir um item ou inimigo
-         * assim para cada sala ij, conteudo = [classe do conteúdo, nome do conteúdo]
-         */
+        * dados[i][j] = "", se a sala ij for vazia
+        *               "classe do conteúdo-nome do conteúdo", se a sala ij possuir um item ou inimigo
+        * assim para cada sala ij, conteudo = [classe do conteúdo, nome do conteúdo]
+        */
         for (int i = 0; i < ordem; i++)
             for (int j = 0; j < ordem; j++) {
                 conteudo = dados[i][j].split("-");
                 switch (conteudo[0]) {
                     // Sala com item
                     case "item":
-                    salas[i][j] = new Sala((ordem * i + j) + 1, conteudo[1], null);
+                    salas[i][j] = new Sala(false, conteudo[1], null);
                     break;
 
                     // Sala com inimigo
@@ -81,55 +82,56 @@ public class Mapa {
                     listaAcoes.addAll(listaAtaques);
                     List<EfeitoStatus> listaEfeitoStatus = CsvHandler.getEfeitosStatus(conteudo[1]);
                     listaAcoes.addAll(listaEfeitoStatus);
-                    salas[i][j] = new Sala((ordem * i + j) + 1, "", new Inimigo(dadosInimigo[0], Integer.parseInt(dadosInimigo[1]), Integer.parseInt(dadosInimigo[2]), Integer.parseInt(dadosInimigo[3]), dadosInimigo[4], dadosInimigo[5], listaAcoes));
+                    salas[i][j] = new Sala(false, "", new Inimigo(dadosInimigo[0], Integer.parseInt(dadosInimigo[1]), Integer.parseInt(dadosInimigo[2]), Integer.parseInt(dadosInimigo[3]), dadosInimigo[4], dadosInimigo[5], listaAcoes));
+                    break;
+
+                    // Sala com escada
+                    case "escada":
+                    salas[i][j] = new Sala(true, null, null);
                     break;
 
                     // Sala vazia
                     default:
-                    salas[i][j] = new Sala((ordem * i + j) + 1, "", null);
+                    salas[i][j] = new Sala(false, "", null);
                     break;
                 }
             }
     }
 
+    
+
     /*
      * Retorna as conexões de uma sala
      * PARAMETROS:
-     * id = id da sala
+     * linha, coluna sao as coordenadas da sala na matriz
      */
-    public int[] getConexoes(int id) {
+    public boolean[] getConexoes(int linha, int coluna) {
         /*
-         * Toda sala tem no máximo 4 conexões, neste
-         * vetor são representadas os (índices + 1)
-         * de suas conexões na forma [NORTE, LESTE, SUL, OESTE]
-         * 
-         * -1 = não existe conexão
+         * Toda sala tem no máximo 4 conexões,
+         * representadas no vetor
+         * conexoes = [FRENTE, TRÁS, CIMA, BAIXO]
+         * 1 = tem conexão
+         * 0 = não existe conexão
          */
-        int[] conexoes = new int[] { -1, -1, -1, -1 };
-        /*
-         * Ex.: Matriz de ordem 3
-         * 0 1 2 | [2,1] = 7
-         * 3 4 5 | 2 = 7 / 3
-         * 6 7 8 | 1 = 7 % 3
-         */
-        int linha = (id - 1) / ordem;
-        int coluna = (id - 1) % ordem;
+        boolean[] conexoes = new boolean[] {false, false, false, false};
 
-        // Checando norte
-        if (linha > 0)
-            conexoes[0] = salas[linha - 1][coluna].getId();
-
-        // Checando leste
+        // Checando frente
         if (coluna < ordem - 1)
-            conexoes[1] = salas[linha][coluna + 1].getId();
+            conexoes[0] = true;
 
-        // Checando sul
-        if (linha < ordem - 1)
-            conexoes[2] = salas[linha + 1][coluna].getId();
+        // Checando trás
+        if (coluna < ordem - 1)
+            conexoes[1] = true;
 
-        // Checando oeste
-        if (coluna > 0)
-            conexoes[3] = salas[linha][coluna - 1].getId();
+        // Checando cima
+        if (linha < ordem - 1) // Checando se não é o último andar
+            if (salas[linha][coluna].getTemEscada() && salas[linha + 1][coluna].getTemEscada()) // Checando se a sala atual tem escada e a de cima também
+                conexoes[2] = true;
+
+        // Checando baixo
+        if (linha < ordem - 1) // Checando se não é o primeiro andar
+            if (salas[linha][coluna].getTemEscada() && salas[linha - 1][coluna].getTemEscada()) // Checando se a sala atual tem escada e a de baixo também
+                conexoes[3] = true;
 
         return conexoes;
     }
@@ -139,29 +141,8 @@ public class Mapa {
      * PARAMETROS
      * destino = id da sala de destino
      */
-    public void moverPersonagem(int destino) {
-        localizacaoProtagonista = destino;
-    }
-
-    // Testes
-    public static void main(String[] args) {
-        Mapa mapa = new Mapa(7);
-
-        // Testando os índices das salas
-        for (int i = 0; i < mapa.getOrdem(); i++) {
-            for (int j = 0; j < mapa.getOrdem(); j++) {
-                if ((mapa.ordem * i + j) + 1 < 10)
-                    System.out.print(mapa.getSalas()[i][j].getId() + "  ");
-                else
-                    System.out.print(mapa.getSalas()[i][j].getId() + " ");
-            }
-            System.out.print("\n");
-        }
-
-        // Testando conexões
-        System.out.print("Conexões sala 29: ");
-        int[] conexoes = mapa.getConexoes(29);
-        for (int i = 0; i < 4; i++)
-            System.out.print(conexoes[i] + " ");
+    public void moverPersonagem(int movHorizontal, int movVertical) {
+        localizacaoProtagonista[0] += movHorizontal;
+        localizacaoProtagonista[1] += movVertical;
     }
 }
