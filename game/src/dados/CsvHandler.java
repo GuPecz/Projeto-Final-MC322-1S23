@@ -127,14 +127,15 @@ public class CsvHandler {
     /*
      * Retorna uma matriz com as Strings do conteúdo em cada sala,
      * a partir dela inicializamos as salas no mapa
+     * PARAMETROS:
+     * ordem = ordem da matriz quadrada do mapa
      */
-    public static String[][] getDadosSalas() {
-        String[][] dados = new String[][] {};
+    public static String[][] getDadosSalas(int ordem) {
+        String[][] dados = new String[ordem][ordem];
         // csv com o conteúdo da matriz de Salas
         String tabela = "game/resources/dados-salas.csv";
         String strLinha;
         try (BufferedReader br = new BufferedReader(new FileReader(tabela))) {
-            br.readLine(); // pular primeira linha
             for (int i = 0; (strLinha = br.readLine()) != null; i++)
                 dados[i] = strLinha.split(",");
         } catch (IOException e) {
