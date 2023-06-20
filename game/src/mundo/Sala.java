@@ -3,25 +3,24 @@ package mundo;
 import entidades.Inimigo;
 
 public class Sala {
-    
-    private int id; // Índice na matriz linearizada para exibição na UI
+    private boolean temEscada; // Indica se é possível descer ou subir de andar no mapa
     private String item;    
     private Inimigo inimigo;
     
-    public Sala(int id, String item, Inimigo inimigo) {
-        this.id = id;
-        this.item = null;
-        this.inimigo = null;
-    }
-    
-    public int getId() {
-        return id;
+    public Sala(boolean temEscada, String item, Inimigo inimigo) {
+        this.temEscada = temEscada;
+        this.item = item;
+        this.inimigo = inimigo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public boolean getTemEscada() {
+        return temEscada;
     }
-    
+
+    public void setTemEscada(boolean temEscada) {
+        this.temEscada = temEscada;
+    }
+
     public String getItem() {
         return item;
     }
