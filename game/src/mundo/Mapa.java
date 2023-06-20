@@ -1,5 +1,11 @@
 package mundo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import combate.Acao;
+import combate.Ataque;
+import combate.EfeitoStatus;
 import dados.CsvHandler;
 import entidades.Inimigo;
 
@@ -38,32 +44,47 @@ public class Mapa {
     }
 
     /*
-     * Inicializa o número identificador de cada sala,
-     * conforme o índice da mesma na matriz linearizada
-     * e com indexação a partir do 1
-     *
-     * TODO: Resolver o problema da listaAcoes do Inimigo, CsvHandler retorna listaAtaques
+     * Inicializa as salas com seu id na matriz linearizada
+     * indexado a partir de 1 e com seu conteúdo, caso tenha
      */
     private void inicializaSalas() {
-        String[][] dados = CsvHandler.getDadosSalas();
-        /*
-         * dados[i][j] = "", se a sala for vazia
-         *               "classe do conteúdo-nome do conteúdo", se a sala possuir um item ou inimigo
-         */
+        String[][] dados = CsvHandler.getDadosSalas(ordem);
         String[] conteudo;
+        /*
+         * dados[i][j] = "", se a sala ij for vazia
+         *               "classe do conteúdo-nome do conteúdo", se a sala ij possuir um item ou inimigo
+         * assim para cada sala ij, conteudo = [classe do conteúdo, nome do conteúdo]
+         */
         for (int i = 0; i < ordem; i++)
             for (int j = 0; j < ordem; j++) {
                 conteudo = dados[i][j].split("-");
                 switch (conteudo[0]) {
+                    // Sala com item
                     case "item":
                     salas[i][j] = new Sala((ordem * i + j) + 1, conteudo[1], null);
                     break;
 
+                    // Sala com inimigo
                     case "inimigo":
                     String[] dadosInimigo = CsvHandler.getDadosInimigo(conteudo[1]);
-                    salas[i][j] = new Sala((ordem * i + j) + 1, "", new Inimigo(dadosInimigo[0], Integer.parseInt(dadosInimigo[1]), Integer.parseInt(dadosInimigo[2]), Integer.parseInt(dadosInimigo[3]), dadosInimigo[4], dadosInimigo[5], null));
+                    /*
+                     * dadosinimigo[i] = 
+                     * nome,     i = 0
+                     * hpMax,    i = 1 
+                     * def,      i = 2
+                     * atq,      i = 3
+                     * item,     i = 4
+                     * elemento, i = 5
+                     */
+                    List<Acao> listaAcoes = new ArrayList<Acao>(); // ações são os ataques e efeito status do inimigo
+                    List<Ataque> listaAtaques = CsvHandler.getAtaques(conteudo[1]);
+                    listaAcoes.addAll(listaAtaques);
+                    List<EfeitoStatus> listaEfeitoStatus = CsvHandler.getEfeitosStatus(conteudo[1]);
+                    listaAcoes.addAll(listaEfeitoStatus);
+                    salas[i][j] = new Sala((ordem * i + j) + 1, "", new Inimigo(dadosInimigo[0], Integer.parseInt(dadosInimigo[1]), Integer.parseInt(dadosInimigo[2]), Integer.parseInt(dadosInimigo[3]), dadosInimigo[4], dadosInimigo[5], listaAcoes));
                     break;
 
+                    // Sala vazia
                     default:
                     salas[i][j] = new Sala((ordem * i + j) + 1, "", null);
                     break;
