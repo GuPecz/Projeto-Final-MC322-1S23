@@ -1,4 +1,4 @@
-personagem,multiplicador,danoBase,habilitado,msgUso
+personagem,nomeAtaque,multiplicador,habilitado,msgUso
 Protagonista,Espada,1.0,false,"Voce atinge o/a %s com a espada] causando %d de dano!"
 Protagonista,Flecha,1.15,false,"Voce atinge o/a %s com uma flecha] causando %d de dano!"
 Protagonista,Soco,0.8,true,"Voce atinge o/a %s com um soco] causando %d de dano!"
