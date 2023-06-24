@@ -36,7 +36,7 @@ public class GameFrame extends JFrame {
         cardPanel.add(menuInicialPanel, "menuinicial");
         
         LorePanel lorePanel = new LorePanel();
-        cardPanel.add(lorePanel, "lorepanel");
+        cardPanel.add(lorePanel, "lore");
         
         PedirNomePanel pedirNomePanel = new PedirNomePanel();
         cardPanel.add(pedirNomePanel, "pedirnome");
