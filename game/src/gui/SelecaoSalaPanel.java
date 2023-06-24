@@ -2,7 +2,7 @@ package gui;
 
 import javax.swing.JPanel;
 
-public class SelecaoSalaPanel {
+public class SelecaoSalaPanel extends JPanel {
     // TODO: Adicionar SerialUID
 
     /**
@@ -11,5 +11,5 @@ public class SelecaoSalaPanel {
 	public SelecaoSalaPanel() {
 		
 	}
-    
+
 }
