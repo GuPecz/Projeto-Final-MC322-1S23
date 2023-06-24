@@ -25,7 +25,9 @@ public class Buff extends EfeitoStatus {
      * - recebedor: oponente na batalha
      */
     @Override
-    public int executar(Personagem usuario, Personagem recebedor) {
+    public int executar(Personagem usuario, Personagem recebedor) throws AcaoIndisponivelException{
+        if (! getHabilitado())
+            throw new AcaoIndisponivelException("A acão ainda não foi desbloqueada!");
         // recebedor só é passado como argumento para sobrescrever
         // o método, não é utilizado para o buff
         buffar(usuario);

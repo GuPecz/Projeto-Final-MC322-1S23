@@ -20,8 +20,10 @@ public abstract class Acao {
      * PARAMETROS:
      * - usuario: personagem que realizou a acao
      * - oponente: oponente do usuario
+     * THROWS:
+     * - AcaoIndisponivelException: quando a acao nao pode ser executada
      */
-    public abstract int executar(Personagem usuario, Personagem oponente);
+    public abstract int executar(Personagem usuario, Personagem oponente) throws AcaoIndisponivelException;
 
     /* Habilita o ataque */
     public void habilitar() {

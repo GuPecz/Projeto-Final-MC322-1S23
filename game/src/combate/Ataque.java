@@ -28,7 +28,9 @@ public class Ataque extends Acao {
      * - oponente: oponente do usuario
      */
     @Override
-    public int executar(Personagem usuario, Personagem oponente) {
+    public int executar(Personagem usuario, Personagem oponente) throws AcaoIndisponivelException{
+        if (! getHabilitado())
+            throw new AcaoIndisponivelException("O ataque ainda não foi desbloqueado!");
         int dano = danoCausado(oponente);
         oponente.reduzirVida(dano);
         return dano;

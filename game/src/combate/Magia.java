@@ -39,7 +39,9 @@ public class Magia extends Ataque {
      * - recebedor: personagem que receberá o dano
      */
     @Override
-    public int executar(Personagem usuario, Personagem oponente) {
+    public int executar(Personagem usuario, Personagem oponente) throws AcaoIndisponivelException{
+        if (! getHabilitado())
+            throw new AcaoIndisponivelException("Você ainda não desbloqueou esse pergaminho!");
         int dano = danoCausado(oponente);
         oponente.reduzirVida(dano);
         return dano;
