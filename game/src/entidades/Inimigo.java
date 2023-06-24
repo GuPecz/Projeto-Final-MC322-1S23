@@ -12,12 +12,10 @@ public class Inimigo extends Personagem {
     // private final Imagem? imagem;
 
     /* Construtor */
-    public Inimigo(String nome, int hpMax, int def, int atq, String loot, String elemento,
-            List<Acao> listaAcoes) {
-        super(nome, hpMax, def, atq, listaAcoes);
+    public Inimigo(String nome, int hpMax, int def, int atq, String loot, String elemento) {
+        super(nome, hpMax, def, atq);
         this.loot = loot;
         this.elemento = elemento;
-        getListaAcoes().addAll(CsvHandler.getAtaques(nome));
         //this.imagem = caminho + getNome() + ".png";
     }
 

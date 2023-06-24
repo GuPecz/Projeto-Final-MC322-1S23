@@ -1,6 +1,11 @@
 package entidades;
 
 import combate.Acao;
+import combate.Ataque;
+import combate.EfeitoStatus;
+import dados.CsvHandler;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Personagem {
@@ -15,13 +20,28 @@ public abstract class Personagem {
     private final List<Acao> listaAcoes;
 
     /* Construtor sem ataques */
-    public Personagem(String nome, int hpMax, int def, int atq, List<Acao> listaAcoes) {
+    public Personagem(String nome, int hpMax, int def, int atq) {
         this.nome = nome;
         this.hp = this.hpMax = hpMax;
         this.def = this.defAtual = def;
         this.defAtual = def;
         this.atq = this.atqAtual = atq;
-        this.listaAcoes = listaAcoes;
+        listaAcoes = new ArrayList<Acao>();
+        importarAcoes();
+    }
+
+    /* Adicionas as acoes a listaAcoes do personagem */
+    private void importarAcoes() {
+        for (Ataque atq: CsvHandler.getAtaques(nome))
+            listaAcoes.add(atq);
+        for (EfeitoStatus es: CsvHandler.getEfeitosStatus(nome))
+            listaAcoes.add(es);
+    }
+
+    /* Volta atq e def ao normal (deve ser chamado ao final de uma luta) */
+    private void resetarStatus() {
+        atqAtual = atq;
+        defAtual = def;
     }
 
     /*

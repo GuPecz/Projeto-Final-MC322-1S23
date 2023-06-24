@@ -21,9 +21,8 @@ public class Protagonista extends Personagem {
     }
 
     /* Construtor */
-    public Protagonista(String nome, int hpMax, int def, int atq, int mpMax,
-            List<Acao> listaAcoes) {
-        super(nome, hpMax, def, atq, listaAcoes);
+    public Protagonista(int hpMax, int def, int atq, int mpMax) {
+        super("protagonista", hpMax, def, atq);
         this.mp = this.mpMax = mpMax;
         inventario = new Inventario();
         listaMagias = new ArrayList<Magia>();
