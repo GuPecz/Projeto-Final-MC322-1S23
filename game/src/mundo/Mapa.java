@@ -82,6 +82,7 @@ public class Mapa {
                     listaAcoes.addAll(listaAtaques);
                     List<EfeitoStatus> listaEfeitoStatus = CsvHandler.getEfeitosStatus(conteudo[1]);
                     listaAcoes.addAll(listaEfeitoStatus);
+                    // TODO - quebrei seu codigo Gustavo tmj
                     salas[i][j] = new Sala(false, "", new Inimigo(dadosInimigo[0], Integer.parseInt(dadosInimigo[1]), Integer.parseInt(dadosInimigo[2]), Integer.parseInt(dadosInimigo[3]), dadosInimigo[4], dadosInimigo[5], listaAcoes));
                     break;
 
