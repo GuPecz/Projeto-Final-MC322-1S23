@@ -22,19 +22,30 @@ public class Protagonista extends Personagem {
 
     /* Construtor */
     public Protagonista(int hpMax, int def, int atq, int mpMax) {
-        super("protagonista", hpMax, def, atq);
+        super("Protagonista", hpMax, def, atq);
         this.mp = this.mpMax = mpMax;
         inventario = new Inventario();
         listaMagias = new ArrayList<Magia>();
+        listaMagias.add(new Magia("Magia de Fogo", "Voce queima o/a %s, causando %d de dano!", "fogo", 20));
+        listaMagias.add(new Magia("Magia de Agua", "Voce cria uma bolha ao redor do/da %s, causando %d de dano!", "agua", 20));
+        listaMagias.add(new Magia("Magia de Vento", "Voce lança uma rajada de vento no/na %s, causando %d de dano!", "vento", 20));
     }
 
     /* toString() */
     public String toString() {
         String str = super.toString().replaceFirst("Personagem", "Protagonista") +
-            "\n\tmp: " + mp + "mpMax: " + mpMax + "\n\tlistaMagias:";
+            "\n\tmp: " + mp + "\n\tmpMax: " + mpMax + "\n\tlistaMagias:";
         for (Magia m: listaMagias)
             str += " " + m.getNome();
         return str;
+    }
+
+    /* Volta atq, def e multiplicadores ao normal (deve ser chamado ao final de uma luta) */
+    @Override
+    public void resetarStatus() {
+        super.resetarStatus();
+        for (Magia m: listaMagias)
+            m.setMultiplicador(0.);
     }
 
     /* Getters e setters */
