@@ -54,12 +54,15 @@ public class GameFrame extends JFrame {
 
         MenuInicialPanel menuInicialPanel = new MenuInicialPanel();
         cardPanel.add(menuInicialPanel, "screen1");
+        
+        PedirNomePanel pedirNomePanel = new PedirNomePanel();
+        cardPanel.add(pedirNomePanel, "screen2");
 
         getContentPane().setLayout(new CardLayout(0, 0));
         getContentPane().add(cardPanel);
 
         cardLayout.show(cardPanel, "screen1");
-    	
+    	// cardLayout.show(cardPanel, "screen");
     	
     }
 }
