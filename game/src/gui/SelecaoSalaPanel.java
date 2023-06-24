@@ -2,14 +2,14 @@ package gui;
 
 import javax.swing.JPanel;
 
-public class GameRodandoPanel {
+public class SelecaoSalaPanel {
     // TODO: Adicionar SerialUID
-    
-	/**
+
+    /**
 	 * Create the panel.
 	 */
-	public GameRodandoPanel() {
+	public SelecaoSalaPanel() {
 		
 	}
-
+    
 }
