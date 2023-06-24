@@ -44,6 +44,12 @@ public class GameFrame extends JFrame {
         GameRodandoPanel gameRodandoPanel = new GameRodandoPanel();
         cardPanel.add(gameRodandoPanel, "gamerodando");
         
+        SelecaoSalaPanel selecaoSalaPanel = new SelecaoSalaPanel();
+        cardPanel.add(selecaoSalaPanel, "selecaosalapanel");
+
+        CombatePanel combatePanel = new CombatePanel();
+        cardPanel.add(combatePanel, "combatePanel");
+
         TelaFinalPanel telaFinalPanel = new TelaFinalPanel();
         cardPanel.add(telaFinalPanel, "telafinal");
 
