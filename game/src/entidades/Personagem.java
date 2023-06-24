@@ -39,7 +39,7 @@ public abstract class Personagem {
     }
 
     /* Volta atq e def ao normal (deve ser chamado ao final de uma luta) */
-    private void resetarStatus() {
+    public void resetarStatus() {
         atqAtual = atq;
         defAtual = def;
     }
@@ -111,7 +111,7 @@ public abstract class Personagem {
     /* toString() */
     public String toString() {
         String str = String.format("Personagem:\n\tnome: %s\n\thp: %d\n\thpMax: %d\n\tdef: %d\n\t" +
-            "\n\tdefAtual: %d\n\tatq: %d\n\tatqAtual: %d\n\tlistaAcoes:", nome, hp, hpMax, def,
+            "defAtual: %d\n\tatq: %d\n\tatqAtual: %d\n\tlistaAcoes:", nome, hp, hpMax, def,
             defAtual, atq, atqAtual);
         for (Acao acao: listaAcoes)
             str += " " + acao.getNome();
