@@ -25,7 +25,8 @@ public class Magia extends Ataque {
     private int danoCausado(Personagem alvo) {
         // obtém o multiplicador de dano sobre o elemento do inimigo
         // TODO - multiplicador pode acabar sendo zero se elemento nao estiver no arquivo, tomar cuidado
-        setMultiplicador(CsvHandler.getMultiplicador(elemento, ((Inimigo)alvo).getElemento()));
+        if (getMultiplicador() == 0.)
+            setMultiplicador(CsvHandler.getMultiplicador(elemento, ((Inimigo)alvo).getElemento()));
         // calculo do dano causado: (dano * multiplicador) * (100 / (100 + def))
         int danoCausado = (int) ((danoBase * getMultiplicador()) * (100 / (100 + alvo.getDefAtual())));;
         return danoCausado;
