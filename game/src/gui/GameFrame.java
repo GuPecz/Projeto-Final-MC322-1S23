@@ -25,8 +25,8 @@ public class GameFrame extends JFrame {
 		setTitle("TODO - titulo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-    	setLocationRelativeTo(null);
     	setBounds(0, 0, 1280, 720);
+    	setLocationRelativeTo(null);
 
         cardLayout = new CardLayout();
         cardPanel = new JPanel();
