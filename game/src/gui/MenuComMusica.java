@@ -26,7 +26,7 @@ import java.nio.file.Path;
 
 import javax.sound.sampled.*;
 
-public class MenuInicial {
+public class MenuComMusica {
 
 	private JFrame frmJogo;
 
@@ -37,7 +37,7 @@ public class MenuInicial {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuInicial window = new MenuInicial();
+					MenuComMusica window = new MenuComMusica();
 					window.frmJogo.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class MenuInicial {
 	/**
 	 * Create the application.
 	 */
-	public MenuInicial() {
+	public MenuComMusica() {
 		initialize();
 	}
 
