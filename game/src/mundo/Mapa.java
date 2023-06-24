@@ -74,16 +74,10 @@ public class Mapa {
                      * hpMax,    i = 1 
                      * def,      i = 2
                      * atq,      i = 3
-                     * item,     i = 4
+                     * loot,     i = 4
                      * elemento, i = 5
                      */
-                    List<Acao> listaAcoes = new ArrayList<Acao>(); // ações são os ataques e efeito status do inimigo
-                    List<Ataque> listaAtaques = CsvHandler.getAtaques(conteudo[1]);
-                    listaAcoes.addAll(listaAtaques);
-                    List<EfeitoStatus> listaEfeitoStatus = CsvHandler.getEfeitosStatus(conteudo[1]);
-                    listaAcoes.addAll(listaEfeitoStatus);
-                    // TODO - quebrei seu codigo Gustavo tmj
-                    salas[i][j] = new Sala(false, "", new Inimigo(dadosInimigo[0], Integer.parseInt(dadosInimigo[1]), Integer.parseInt(dadosInimigo[2]), Integer.parseInt(dadosInimigo[3]), dadosInimigo[4], dadosInimigo[5], listaAcoes));
+                    salas[i][j] = new Sala(false, "", new Inimigo(dadosInimigo[0], Integer.parseInt(dadosInimigo[1]), Integer.parseInt(dadosInimigo[2]), Integer.parseInt(dadosInimigo[3]), dadosInimigo[4], dadosInimigo[5]));
                     break;
 
                     // Sala com escada
