@@ -20,6 +20,7 @@ import javax.swing.JSeparator;
 import javax.swing.JProgressBar;
 
 public class GameRodandoPanel extends JPanel {
+	private static final long serialVersionUID = -5030442052142425577L;
 
     /**
      * Create the panel.
