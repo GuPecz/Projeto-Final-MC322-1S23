@@ -47,6 +47,7 @@ public class GameFrame extends JFrame {
         SelecaoSalaPanel selecaoSalaPanel = new SelecaoSalaPanel();
         cardPanel.add(selecaoSalaPanel, "selecaosalapanel");
 
+        // TODO: Considerar tratar esses submenus da gameplay como painel secundário ou algo do tipo
         CombatePanel combatePanel = new CombatePanel();
         cardPanel.add(combatePanel, "combatePanel");
 
