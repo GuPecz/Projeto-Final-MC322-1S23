@@ -19,9 +19,14 @@ import javax.swing.JTextArea;
 import javax.swing.JSeparator;
 import javax.swing.JProgressBar;
 
+// NOTA: Isso aqui não é um CombatePanel na real?
 public class GameRodandoPanel extends JPanel {
 	private static final long serialVersionUID = -5030442052142425577L;
-
+    private JButton botaoAtacar;
+    private JButton botaoMagia;
+    private JButton botaoUsarItem;
+    private JButton botaoFugir;
+    
     /**
      * Create the panel.
      */
@@ -29,7 +34,7 @@ public class GameRodandoPanel extends JPanel {
         super();
         initialize();
     }
-
+    
     private void initialize() {
         int buttonWidth = 500;
 
@@ -45,17 +50,17 @@ public class GameRodandoPanel extends JPanel {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2, 2, 10, 10));
 
-        JButton botaoAtacar = new JButton("Atacar");
+        botaoAtacar = new JButton("Atacar");
         botaoAtacar.setFont(new Font("Tahoma", Font.PLAIN, 33));
         botaoAtacar.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
         buttonPanel.add(botaoAtacar);
 
-        JButton botaoMagia = new JButton("Magia");
+        botaoMagia = new JButton("Magia");
         botaoMagia.setFont(new Font("Tahoma", Font.PLAIN, 33));
         botaoMagia.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
         buttonPanel.add(botaoMagia);
 
-        JButton botaoUsarItem = new JButton("Usar Item");
+        botaoUsarItem = new JButton("Usar Item");
         botaoUsarItem.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
         botaoUsarItem.setFont(new Font("Tahoma", Font.PLAIN, 33));
         buttonPanel.add(botaoUsarItem);
@@ -65,7 +70,7 @@ public class GameRodandoPanel extends JPanel {
             }
         });
 
-        JButton botaoFugir = new JButton("Fugir");
+        botaoFugir = new JButton("Fugir");
         botaoFugir.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
         botaoFugir.setFont(new Font("Tahoma", Font.PLAIN, 33));
         buttonPanel.add(botaoFugir);
@@ -80,7 +85,7 @@ public class GameRodandoPanel extends JPanel {
         
         Component verticalStrut_1 = Box.createVerticalStrut(20);
         add(verticalStrut_1);
-//        add(Box.createVerticalStrut(40));
+        //        add(Box.createVerticalStrut(40));
         
         JLabel lblNewLabel_1 = new JLabel("HP");
         lblNewLabel_1.setMaximumSize(new Dimension(500, 2147483647));
@@ -109,5 +114,21 @@ public class GameRodandoPanel extends JPanel {
         
         Component verticalStrut = Box.createVerticalStrut(20);
         add(verticalStrut);
+    }
+
+    public JButton getBotaoAtacar() {
+        return botaoAtacar;
+    }
+
+    public JButton getBotaoMagia() {
+        return botaoMagia;
+    }
+
+    public JButton getBotaoUsarItem() {
+        return botaoUsarItem;
+    }
+
+    public JButton getBotaoFugir() {
+        return botaoFugir;
     }
 }
