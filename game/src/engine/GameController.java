@@ -44,12 +44,15 @@ public class GameController {
 
         lorePanel = new LorePanel();
         view.addPainelPrincipal(lorePanel, "lorepanel");
+        addListenersMenuLore();
         
         gameRodandoPanel = new GameRodandoPanel();
         view.addPainelPrincipal(gameRodandoPanel, "gamerodando");
+        addListenersGameRodando();
         
         telaFinalPanel = new TelaFinalPanel();
         view.addPainelPrincipal(telaFinalPanel, "telafinal");
+        addListenersMenuFinal();
     }
     
     private void addListenersMenuNome() {
@@ -86,7 +89,22 @@ public class GameController {
             }
         });
     }
+
+    // TODO: Implementar método
+    private void addListenersMenuLore() {
+
+    }
+
+    // TODO: Implementar método
+    private void addListenersGameRodando() {
+
+    }
  
+    // TODO: Implementar método
+    private void addListenersMenuFinal() {
+
+    }
+
     public void comecarJogo() {
     	view.showFrame();
         view.showPanel("menuinicial");
