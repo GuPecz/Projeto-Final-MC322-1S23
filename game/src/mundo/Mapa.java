@@ -15,10 +15,11 @@ public class Mapa {
     private int[] localizacaoProtagonista; // Coordenada da localização do protagonista no mapa    
     
     /* Construtor */
-    public Mapa(int ordem) {
-        this.ordem = ordem;
+    public Mapa() {
+        ordem = 7;
         this.salas = new Sala[ordem][ordem];
         // Protagonista começa na sala [0][0]
+        localizacaoProtagonista = new int[2];
         this.localizacaoProtagonista[0] = 0;
         this.localizacaoProtagonista[1] = 0;
         inicializaSalas();
@@ -67,7 +68,7 @@ public class Mapa {
 
                     // Sala com inimigo
                     case "inimigo":
-                    String[] dadosInimigo = CsvHandler.getDadosInimigo(conteudo[1]);
+                    String[] dadosInimigo = CsvHandler.getDadosInimigo(conteudo[1].strip());
                     /*
                      * dadosinimigo[i] = 
                      * nome,     i = 0
@@ -77,7 +78,7 @@ public class Mapa {
                      * loot,     i = 4
                      * elemento, i = 5
                      */
-                    salas[i][j] = new Sala(false, "", new Inimigo(dadosInimigo[0], Integer.parseInt(dadosInimigo[1]), Integer.parseInt(dadosInimigo[2]), Integer.parseInt(dadosInimigo[3]), dadosInimigo[4], dadosInimigo[5]));
+                        salas[i][j] = new Sala(false, "", new Inimigo(dadosInimigo[0], Integer.parseInt(dadosInimigo[1]), Integer.parseInt(dadosInimigo[2]), Integer.parseInt(dadosInimigo[3]), dadosInimigo[4], dadosInimigo[5]));
                     break;
 
                     // Sala com escada

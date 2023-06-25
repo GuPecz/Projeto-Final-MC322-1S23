@@ -2,7 +2,6 @@ package entidades;
 
 import java.util.ArrayList;
 import java.util.List;
-//import itens.Inventario;
 import combate.Acao;
 import combate.Magia;
 

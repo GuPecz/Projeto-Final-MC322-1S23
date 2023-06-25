@@ -32,32 +32,8 @@ public class GameFrame extends JFrame {
         cardPanel = new JPanel();
         cardPanel.setLayout(cardLayout);
 
-        MenuInicialPanel menuInicialPanel = new MenuInicialPanel();
-        cardPanel.add(menuInicialPanel, "menuinicial");
-        
-        LorePanel lorePanel = new LorePanel();
-        cardPanel.add(lorePanel, "lore");
-        
-        PedirNomePanel pedirNomePanel = new PedirNomePanel();
-        cardPanel.add(pedirNomePanel, "pedirnome");
-        
-        GameRodandoPanel gameRodandoPanel = new GameRodandoPanel();
-        cardPanel.add(gameRodandoPanel, "gamerodando");
-        
-        SelecaoSalaPanel selecaoSalaPanel = new SelecaoSalaPanel();
-        cardPanel.add(selecaoSalaPanel, "selecaosalapanel");
-
-        // TODO: Considerar tratar esses submenus da gameplay como painel secundário ou algo do tipo
-        CombatePanel combatePanel = new CombatePanel();
-        cardPanel.add(combatePanel, "combatePanel");
-
-        TelaFinalPanel telaFinalPanel = new TelaFinalPanel();
-        cardPanel.add(telaFinalPanel, "telafinal");
-
         getContentPane().setLayout(new CardLayout(0, 0));
         getContentPane().add(cardPanel);
-
-        cardLayout.show(cardPanel, "menuinicial");
         
     	// cardLayout.show(cardPanel, "screen");
     }

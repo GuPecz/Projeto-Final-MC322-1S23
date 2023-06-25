@@ -14,6 +14,17 @@ import combate.EfeitoStatus;
 /* TODO - implementacoes estao parecidas, deve dar pra reutilizar, boa sorte se alguem for tentar */
 
 public class CsvHandler {
+    /* Fecha o arquivo referenciado pelo BufferedReader br */
+    private static void fecharArquivo(BufferedReader br) {
+        if (br != null) {
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     /*
      * retorna o multiplicador de um elemento sobre o outro
      * PARAMETROS:
@@ -23,7 +34,9 @@ public class CsvHandler {
     public static double getMultiplicador(String elementoAtq, String elementoDef) {
         String tabela = "game/resources/efetividade-elementos-varias-linhas.csv";
         String strLinha;
-        try (BufferedReader br = new BufferedReader(new FileReader(tabela))) {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(tabela));
             br.readLine(); // pular primeira linha
             while ((strLinha = br.readLine()) != null) {
                 String[] linha = strLinha.split(","); // separa colunas por ","
@@ -32,6 +45,8 @@ public class CsvHandler {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            fecharArquivo(br);
         }
         return 0.;
     }
@@ -47,7 +62,9 @@ public class CsvHandler {
         // [4] msgUso
         String tabela = "game/resources/ataques.csv";
         String strLinha;
-        try (BufferedReader br = new BufferedReader(new FileReader(tabela))) {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(tabela));
             br.readLine(); // pular primeira linha
             while ((strLinha = br.readLine()) != null) {
                 String[] linha = strLinha.split(",");
@@ -58,6 +75,8 @@ public class CsvHandler {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            fecharArquivo(br);
         }
         return listaAtaques;
     }
@@ -73,7 +92,9 @@ public class CsvHandler {
         // [4] alteracaoStatus, [5] msgUso
         String tabela = "game/resources/efeitos-status.csv";
         String strLinha;
-        try (BufferedReader br = new BufferedReader(new FileReader(tabela))) {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(tabela));
             br.readLine(); // pular primeira linha
             while ((strLinha = br.readLine()) != null) {
                 String[] linha = strLinha.split(",");
@@ -89,6 +110,8 @@ public class CsvHandler {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            fecharArquivo(br);
         }
         return listaEfeitoStatus;
     }
@@ -100,11 +123,13 @@ public class CsvHandler {
      * TODO: Implementar seleção aleatória de elemento para os lacaios
      */
     public static String[] getDadosInimigo(String nomeInimigo) {
-        String[] dados = new String[] {};
+        String[] dados = {};
         // csv com: [0] nome, [1] hpMax, [2] def, [3] atq, [4] item, [5] elemento
         String tabela = "game/resources/dados-inimigos.csv";
         String strLinha;
-        try (BufferedReader br = new BufferedReader(new FileReader(tabela))) {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(tabela));
             br.readLine(); // pular primeira linha
             while ((strLinha = br.readLine()) != null) {
                 String[] linha = strLinha.split(",");
@@ -120,6 +145,8 @@ public class CsvHandler {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            fecharArquivo(br);
         }
         return dados;
     }
@@ -135,11 +162,15 @@ public class CsvHandler {
         // csv com o conteúdo da matriz de Salas
         String tabela = "game/resources/dados-salas.csv";
         String strLinha;
-        try (BufferedReader br = new BufferedReader(new FileReader(tabela))) {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(tabela));
             for (int i = 0; (strLinha = br.readLine()) != null; i++)
                 dados[i] = strLinha.split(",");
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            fecharArquivo(br);
         }
         return dados;
     }

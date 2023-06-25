@@ -1,113 +1,108 @@
 package engine;
 
-import java.awt.EventQueue;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
+import java.io.IOException;
 
-import entidades.Protagonista;
-import gui.GameRodandoPanel;
-import gui.GameView;
-import gui.LorePanel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import gui.MenuInicialPanel;
 import gui.PedirNomePanel;
-import gui.TelaFinalPanel;
+import gui.SalaPanel;
 
 public class GameController {
-    //private GameModel model;
+    private GameModel model;
     private GameView view;
-    private MenuInicialPanel menuInicialPanel;
-    private LorePanel lorePanel;
-    private PedirNomePanel pedirNomePanel;
-    private GameRodandoPanel gameRodandoPanel;
-    private TelaFinalPanel telaFinalPanel;
-    private Protagonista protagonista;
    
-    public GameController(GameView view) {
+    public GameController(GameModel model, GameView view) {
+        this.model = model;
         this.view = view;
-        inicializarProtagonista();
-        inicializarPaineis();
-    }
-    
-    private void inicializarProtagonista() {
-        protagonista = new Protagonista(0, 0, 0, 0);
+        addListenersPaineis();
     }
 
-    private void inicializarPaineis() {
-        menuInicialPanel = new MenuInicialPanel();
-        view.addPainelPrincipal(menuInicialPanel, "menuinicial");
+    private void addListenersPaineis() {
         addListenersMenuInicial();
-
-        pedirNomePanel = new PedirNomePanel();
-        view.addPainelPrincipal(pedirNomePanel, "pedirnome");
         addListenersMenuNome();
-
-        lorePanel = new LorePanel();
-        view.addPainelPrincipal(lorePanel, "lorepanel");
+        addListenersSala();
         addListenersMenuLore();
-        
-        gameRodandoPanel = new GameRodandoPanel();
-        view.addPainelPrincipal(gameRodandoPanel, "gamerodando");
-        addListenersGameRodando();
-        
-        telaFinalPanel = new TelaFinalPanel();
-        view.addPainelPrincipal(telaFinalPanel, "telafinal");
         addListenersMenuFinal();
+    }
+
+    private class ListenerVoltarMenuInicial implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ev) {
+            view.showPanel("menuInicial");
+        }
     }
     
     private void addListenersMenuNome() {
-    	pedirNomePanel.getBotaoVoltar().addActionListener(new ActionListener ( ) {
+        PedirNomePanel pedirNomePanel = view.getPedirNomePanel();
+    	pedirNomePanel.getBotaoVoltar().addActionListener(new ListenerVoltarMenuInicial());
+    	pedirNomePanel.getBotaoConfirmar().addActionListener(new ActionListener () {
             public void actionPerformed(ActionEvent ev) {
-                view.showPanel("menuinicial");
-            }
-        });
-    	pedirNomePanel.getBotaoConfirmar().addActionListener(new ActionListener ( ) {
-            public void actionPerformed(ActionEvent ev) {
-                System.out.println(protagonista.getNome());
-                protagonista.setNome(pedirNomePanel.getTextFieldNome().getText());
-                System.out.println(protagonista.getNome());
+                // pega o label com o texto da lore
+                JLabel labelLore = view.getLorePanel().getLabelLore();
+                // pega o nome do protagonista
+                String nome = pedirNomePanel.getTextFieldNome().getText();
+                // seta o nome. se n tiver nome, seta pra "Heroi"
+                model.getProtagonista().setNome(nome.equals("") ? "Herói": nome);
+                // substitui o %s pelo nome do protagonista
+                labelLore.setText(String.format(labelLore.getText(), model.getProtagonista().getNome()));
                 view.showPanel("lore");
             }
         });
     }
 
     private void addListenersMenuInicial() {
-        menuInicialPanel.getBotaoJogar().addActionListener(new ActionListener ( ) {
+        MenuInicialPanel menuInicialPanel = view.getMenuInicialPanel();
+        menuInicialPanel.getBotaoJogar().addActionListener(new ActionListener () {
             public void actionPerformed(ActionEvent ev) {
-                view.showPanel("pedirnome");
+                view.showPanel("pedirNome");
             }
         });
         /* TODO - painel de config*/
-        menuInicialPanel.getBotaoConfig().addActionListener(new ActionListener ( ) {
+        menuInicialPanel.getBotaoConfig().addActionListener(new ActionListener () {
             public void actionPerformed(ActionEvent ev) {
                 view.showPanel(null);
             }
         });
-        menuInicialPanel.getBotaoSair().addActionListener(new ActionListener ( ) {
+        menuInicialPanel.getBotaoSair().addActionListener(new ActionListener () {
             public void actionPerformed(ActionEvent ev) {
                 System.exit(0);
             }
         });
     }
-
-    // TODO: Implementar método
-    private void addListenersMenuLore() {
-
+    
+    private void addListenersSala() {
+        SalaPanel salaPanel = view.getSalaPanel();
+        JButton[] botoes = {salaPanel.getBotao1(), salaPanel.getBotao2(), salaPanel.getBotao3(), salaPanel.getBotao4()};
+        ListenerBotaoSala listenerBotoes = new ListenerBotaoSala(this, botoes);
+        for (JButton botao: botoes)
+            botao.addActionListener(listenerBotoes);
     }
 
     // TODO: Implementar método
-    private void addListenersGameRodando() {
-
+    private void addListenersMenuLore() {
+        view.getLorePanel().getBotaoContinuar().addActionListener(new ActionListener () {
+            public void actionPerformed(ActionEvent ev) {
+                view.showPanel("sala");
+            }
+        });
     }
  
     // TODO: Implementar método
     private void addListenersMenuFinal() {
-
+        view.getTelaFinalPanelGameOver().getBotaoVoltarMenu().addActionListener(new ListenerVoltarMenuInicial());
     }
 
     public void comecarJogo() {
     	view.showFrame();
-        view.showPanel("menuinicial");
+        view.showPanel("telaInicial");
     }
-    
+
 }

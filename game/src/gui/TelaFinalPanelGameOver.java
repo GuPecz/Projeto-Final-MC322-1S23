@@ -46,4 +46,8 @@ public class TelaFinalPanelGameOver extends JPanel {
         panel.add(verticalStrut_1);
 	
 	}
+
+	public JButton getBotaoVoltarMenu() {
+		return botaoVoltarMenu;
+	}
 }

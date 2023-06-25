@@ -64,21 +64,12 @@ public class CombatePanel extends JPanel {
         botaoUsarItem.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
         botaoUsarItem.setFont(new Font("Tahoma", Font.PLAIN, 33));
         buttonPanel.add(botaoUsarItem);
-        botaoUsarItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0); // Close the game
-            }
-        });
+
 
         botaoFugir = new JButton("Fugir");
         botaoFugir.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
         botaoFugir.setFont(new Font("Tahoma", Font.PLAIN, 33));
         buttonPanel.add(botaoFugir);
-        botaoFugir.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0); // Close the game
-            }
-        });
 
         add(Box.createVerticalStrut(20));
         add(buttonPanel);
