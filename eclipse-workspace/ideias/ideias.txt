@@ -1,4 +1,0 @@
-Atributo elemento
--> Manter os três primários, fogo, água e vento para o personagem
--> Criar os derivados, gelo, lava, natureza, etc, pros inimigos
--> Usar um csv ou outro tipo de tabela pra guardar os multiplicadores dos ataques elementais
