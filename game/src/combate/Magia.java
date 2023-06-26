@@ -39,12 +39,17 @@ public class Magia extends Ataque {
      * - recebedor: personagem que receberá o dano
      */
     @Override
-    public int executar(Personagem usuario, Personagem oponente) throws AcaoIndisponivelException{
-        if (! getHabilitado())
-            throw new AcaoIndisponivelException("Você ainda não desbloqueou esse pergaminho!");
+    public String executar(Personagem usuario, Personagem oponente) {
+        String msgUso;
         int dano = danoCausado(oponente);
         oponente.reduzirVida(dano);
-        return dano;
+        msgUso = String.format(getMsgUso(), dano);
+        if (getMultiplicador() == 1.25) {
+            msgUso += " Super efetivo!";
+        } else {
+            msgUso += " Pouco efetivo...";
+        }
+        return msgUso;
     }
 
     /* Getters e setters */

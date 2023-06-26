@@ -17,8 +17,8 @@ public class Ataque extends Acao {
      * PARAMETROS:
      * - alvo: personagem que receberá o dano
      */
-    private int danoCausado(Personagem alvo) {
-        return (int) (multiplicador * (100. / (100 + alvo.getDef())));
+    private int danoCausado(Personagem usuario, Personagem alvo) {
+        return (int) ((multiplicador * usuario.getAtqAtual()) * (100. / (100 + alvo.getDefAtual())));
     }
 
     /*
@@ -28,12 +28,10 @@ public class Ataque extends Acao {
      * - oponente: oponente do usuario
      */
     @Override
-    public int executar(Personagem usuario, Personagem oponente) throws AcaoIndisponivelException{
-        if (! getHabilitado())
-            throw new AcaoIndisponivelException("O ataque ainda não foi desbloqueado!");
-        int dano = danoCausado(oponente);
+    public String executar(Personagem usuario, Personagem oponente) {
+        int dano = danoCausado(usuario, oponente);
         oponente.reduzirVida(dano);
-        return dano;
+        return String.format(getMsgUso(), dano);
     }
 
     /* toString() */

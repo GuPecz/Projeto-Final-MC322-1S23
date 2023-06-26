@@ -3,14 +3,24 @@ package mundo;
 import entidades.Inimigo;
 
 public class Sala {
+    private boolean jaVisitada;
     private boolean temEscada; // Indica se é possível descer ou subir de andar no mapa
     private String item;    
     private Inimigo inimigo;
     
     public Sala(boolean temEscada, String item, Inimigo inimigo) {
+        jaVisitada = false;
         this.temEscada = temEscada;
         this.item = item;
         this.inimigo = inimigo;
+    }
+
+    public boolean getJaVisitada() {
+        return jaVisitada;
+    }
+
+    public void setJaVisitada(boolean jaVisitada) {
+        this.jaVisitada = jaVisitada;
     }
 
     public boolean getTemEscada() {

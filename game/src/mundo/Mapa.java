@@ -1,11 +1,5 @@
 package mundo;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import combate.Acao;
-import combate.Ataque;
-import combate.EfeitoStatus;
 import dados.CsvHandler;
 import entidades.Inimigo;
 
@@ -23,6 +17,8 @@ public class Mapa {
         this.localizacaoProtagonista[0] = 0;
         this.localizacaoProtagonista[1] = 0;
         inicializaSalas();
+        // A sala [0][0] acaba de ser visitada
+        salas[0][0].setJaVisitada(true);
     }
     
     /* Getters e setters */
@@ -68,7 +64,7 @@ public class Mapa {
 
                     // Sala com inimigo
                     case "inimigo":
-                    String[] dadosInimigo = CsvHandler.getDadosInimigo(conteudo[1].strip());
+                    String[] dadosInimigo = CsvHandler.getDadosInimigo(conteudo[1]);
                     /*
                      * dadosinimigo[i] = 
                      * nome,     i = 0
@@ -78,7 +74,7 @@ public class Mapa {
                      * loot,     i = 4
                      * elemento, i = 5
                      */
-                        salas[i][j] = new Sala(false, "", new Inimigo(dadosInimigo[0], Integer.parseInt(dadosInimigo[1]), Integer.parseInt(dadosInimigo[2]), Integer.parseInt(dadosInimigo[3]), dadosInimigo[4], dadosInimigo[5]));
+                    salas[i][j] = new Sala(false, null, new Inimigo(dadosInimigo[0], Integer.parseInt(dadosInimigo[1]), Integer.parseInt(dadosInimigo[2]), Integer.parseInt(dadosInimigo[3]), dadosInimigo[4], dadosInimigo[5]));
                     break;
 
                     // Sala com escada
@@ -88,7 +84,7 @@ public class Mapa {
 
                     // Sala vazia
                     default:
-                    salas[i][j] = new Sala(false, "", null);
+                    salas[i][j] = new Sala(false, null, null);
                     break;
                 }
             }
@@ -101,14 +97,16 @@ public class Mapa {
      * PARAMETROS:
      * linha, coluna sao as coordenadas da sala na matriz
      */
-    public boolean[] getConexoes(int linha, int coluna) {
+    public boolean[] getConexoes() {
         /*
          * Toda sala tem no máximo 4 conexões,
          * representadas no vetor
          * conexoes = [FRENTE, TRÁS, CIMA, BAIXO]
-         * 1 = tem conexão
-         * 0 = não existe conexão
+         * true = tem conexão
+         * false = não existe conexão
          */
+        int linha = localizacaoProtagonista[0];
+        int coluna = localizacaoProtagonista[1];
         boolean[] conexoes = new boolean[] {false, false, false, false};
 
         // Checando frente
@@ -116,7 +114,7 @@ public class Mapa {
             conexoes[0] = true;
 
         // Checando trás
-        if (coluna < ordem - 1)
+        if (coluna > 0)
             conexoes[1] = true;
 
         // Checando cima
@@ -125,7 +123,7 @@ public class Mapa {
                 conexoes[2] = true;
 
         // Checando baixo
-        if (linha < ordem - 1) // Checando se não é o primeiro andar
+        if (linha > 0) // Checando se não é o primeiro andar
             if (salas[linha][coluna].getTemEscada() && salas[linha - 1][coluna].getTemEscada()) // Checando se a sala atual tem escada e a de baixo também
                 conexoes[3] = true;
 
@@ -137,8 +135,11 @@ public class Mapa {
      * PARAMETROS
      * destino = id da sala de destino
      */
-    public void moverPersonagem(int movHorizontal, int movVertical) {
-        localizacaoProtagonista[0] += movHorizontal;
-        localizacaoProtagonista[1] += movVertical;
+    public void moverPersonagem(int movLinha, int movColuna) {
+        localizacaoProtagonista[0] += movLinha;
+        localizacaoProtagonista[1] += movColuna;
+        Sala salaAtual = salas[localizacaoProtagonista[0]][localizacaoProtagonista[1]];
+        if (!salaAtual.getJaVisitada())
+            salaAtual.setJaVisitada(true);
     }
 }

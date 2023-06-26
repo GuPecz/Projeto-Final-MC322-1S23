@@ -1,16 +1,13 @@
 package engine;
 
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JProgressBar;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
+import combate.AcaoIndisponivelException;
+import entidades.Inimigo;
 import gui.MenuInicialPanel;
 import gui.PedirNomePanel;
 import gui.SalaPanel;
@@ -19,10 +16,11 @@ public class GameController {
     private GameModel model;
     private GameView view;
    
-    public GameController(GameModel model, GameView view) {
-        this.model = model;
-        this.view = view;
+    public GameController() {
+        model = new GameModel();
+        view = new GameView();
         addListenersPaineis();
+        view.showFrame();
     }
 
     private void addListenersPaineis() {
@@ -31,12 +29,13 @@ public class GameController {
         addListenersSala();
         addListenersMenuLore();
         addListenersMenuFinal();
+        view.getConfigPanel().getBotaoTriste().addActionListener(new ListenerVoltarMenuInicial());
     }
 
     private class ListenerVoltarMenuInicial implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ev) {
-            view.showPanel("menuInicial");
+            view.mostrarPanel("menuInicial");
         }
     }
     
@@ -53,7 +52,7 @@ public class GameController {
                 model.getProtagonista().setNome(nome.equals("") ? "Herói": nome);
                 // substitui o %s pelo nome do protagonista
                 labelLore.setText(String.format(labelLore.getText(), model.getProtagonista().getNome()));
-                view.showPanel("lore");
+                view.mostrarPanel("lore");
             }
         });
     }
@@ -62,13 +61,12 @@ public class GameController {
         MenuInicialPanel menuInicialPanel = view.getMenuInicialPanel();
         menuInicialPanel.getBotaoJogar().addActionListener(new ActionListener () {
             public void actionPerformed(ActionEvent ev) {
-                view.showPanel("pedirNome");
+                view.mostrarPanel("pedirNome");
             }
         });
-        /* TODO - painel de config*/
         menuInicialPanel.getBotaoConfig().addActionListener(new ActionListener () {
             public void actionPerformed(ActionEvent ev) {
-                view.showPanel(null);
+                view.mostrarPanel("config");
             }
         });
         menuInicialPanel.getBotaoSair().addActionListener(new ActionListener () {
@@ -86,23 +84,93 @@ public class GameController {
             botao.addActionListener(listenerBotoes);
     }
 
-    // TODO: Implementar método
     private void addListenersMenuLore() {
         view.getLorePanel().getBotaoContinuar().addActionListener(new ActionListener () {
             public void actionPerformed(ActionEvent ev) {
-                view.showPanel("sala");
+                gerarSala();
+                view.mostrarPanel("sala");
             }
         });
     }
- 
-    // TODO: Implementar método
+
     private void addListenersMenuFinal() {
         view.getTelaFinalPanelGameOver().getBotaoVoltarMenu().addActionListener(new ListenerVoltarMenuInicial());
     }
 
-    public void comecarJogo() {
-    	view.showFrame();
-        view.showPanel("telaInicial");
+    private void gerarSala() {
+        int pos[] = model.getPosicaoProtagonista();
+        view.atualizarDisplaySala(pos[0], pos[1]);
+        if (model.getSalaAtual().getInimigo() != null)
+            mostrarInimigo();
+        else if (model.getSalaAtual().getItem() != null)
+            mostrarItem();
+        else
+            view.mostrarSalaVazia(model.getDirecoesPossiveis());
+    }
+
+    public void fugir() {
+        view.mostrarDirecoesPossiveis(model.getDirecoesPossiveis());
+        view.removerInimigo();
+    }
+
+    private void mostrarItem() {
+        String item = model.getSalaAtual().getItem();
+        view.mostrarItem(item);
+    }
+
+    public void pegarItem() {
+        //Score.incrementarLootColetado();
+        model.pegarItem();
+        view.mostrarDirecoesPossiveis(model.getDirecoesPossiveis());        
+    }
+
+    public void descartarItem() {
+        model.descartarItem();
+        view.mostrarDirecoesPossiveis(model.getDirecoesPossiveis());        
+    }
+
+    private void mostrarInimigo() {
+        Inimigo inimigo = model.getSalaAtual().getInimigo();
+        view.mostrarInimigo(inimigo.getNome(), inimigo.getElemento(), 
+                            inimigo.getHp(), inimigo.getHpMax());
+    }
+
+    public void movimentarProtagonista(String direcao) {
+        model.movimentacao(direcao);
+        view.habilitarBotoesSala();
+        gerarSala();
+    }
+
+    private void inimigoDerrotado() {
+        String nomeInimigo = model.getSalaAtual().getInimigo().getNome();
+        Score.incrementarInimigosEliminados();
+        view.mostrarInimigoDerrotado(nomeInimigo,
+                                     model.inimigoMorreu());
+        if (nomeInimigo.equals("Anciao"))
+            view.mostrarPanel("telaFinal");
+    }
+
+    public void executarAcao(String acao) {
+        int[] valoresBarra;
+        String msgUsoProtag, msgUsoInimigo;
+        try {
+            msgUsoProtag = model.executarAcaoProtagonista(acao);
+            if (! model.getSalaAtual().getInimigo().vivo()) {
+                inimigoDerrotado();
+                return;
+            }
+            msgUsoInimigo = model.executarAcaoInimigo();
+            if (! model.getProtagonista().vivo()) {
+                view.mostrarPanel("gameOver");
+                return;
+            }
+            valoresBarra = model.getVidaMana();
+            view.atualizarBarras(valoresBarra[0], valoresBarra[1], valoresBarra[2],
+                                 valoresBarra[3], valoresBarra[4], valoresBarra[5]);
+            view.displayMensagemUso(msgUsoProtag, msgUsoInimigo);
+        } catch (AcaoIndisponivelException e) {
+            view.getSalaPanel().getLabelTexto().setText(e.getMessage());
+        }
     }
 
 }

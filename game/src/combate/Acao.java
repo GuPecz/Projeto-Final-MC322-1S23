@@ -23,7 +23,7 @@ public abstract class Acao {
      * THROWS:
      * - AcaoIndisponivelException: quando a acao nao pode ser executada
      */
-    public abstract int executar(Personagem usuario, Personagem oponente) throws AcaoIndisponivelException;
+    public abstract String executar(Personagem usuario, Personagem oponente);
 
     /* Habilita o ataque */
     public void habilitar() {
@@ -54,6 +54,10 @@ public abstract class Acao {
     
     public boolean getHabilitado() {
         return habilitado;
+    }
+
+    public String getMsgUso() {
+        return msgUso;
     }
 
 }

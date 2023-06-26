@@ -25,7 +25,7 @@ public class SalaPanel extends JPanel {
 	private JButton botao2;
 	private JButton botao3;
 	private JButton botao4;
-	private JLabel labelHp_1;
+	private JLabel labelHpInimigo;
 	
 	public SalaPanel() {
 	    initialize();
@@ -43,7 +43,7 @@ public class SalaPanel extends JPanel {
         add(contentPanel, BorderLayout.CENTER);
         
         labelPosicao = new JLabel("Andar %d, Sala %d");
-        labelPosicao.setFont(new Font("Tahoma", Font.BOLD, 13));
+        labelPosicao.setFont(new Font("Tahoma", Font.BOLD, 17));
         GridBagConstraints gbc_labelPosicao = new GridBagConstraints();
         gbc_labelPosicao.insets = new Insets(0, 0, 5, 5);
         gbc_labelPosicao.gridx = 0;
@@ -51,25 +51,28 @@ public class SalaPanel extends JPanel {
         contentPanel.add(labelPosicao, gbc_labelPosicao);
         
         labelTexto = new JLabel("Lorem ipsum dolor sit amet, consectetur adipiscing elit. In finibus commodo diam, sit amet malesuada nulla fringilla eu");
-        labelTexto.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        labelTexto.setHorizontalAlignment(SwingConstants.CENTER);
+        labelTexto.setFont(new Font("Tahoma", Font.PLAIN, 15));
         GridBagConstraints gbc_labelTexto = new GridBagConstraints();
         gbc_labelTexto.gridwidth = 2;
+        
         gbc_labelTexto.insets = new Insets(0, 0, 5, 5);
         gbc_labelTexto.gridx = 1;
         gbc_labelTexto.gridy = 1;
         contentPanel.add(labelTexto, gbc_labelTexto);
         
-        labelHp_1 = new JLabel("%s");
-        labelHp_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        GridBagConstraints gbc_labelHp_1 = new GridBagConstraints();
-        gbc_labelHp_1.gridwidth = 2;
-        gbc_labelHp_1.insets = new Insets(0, 0, 5, 5);
-        gbc_labelHp_1.gridx = 1;
-        gbc_labelHp_1.gridy = 2;
-        contentPanel.add(labelHp_1, gbc_labelHp_1);
+        labelHpInimigo = new JLabel("Nome inimigo");
+        labelHpInimigo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        GridBagConstraints gbc_labelHpInimigo = new GridBagConstraints();
+        gbc_labelHpInimigo.gridwidth = 2;
+        gbc_labelHpInimigo.insets = new Insets(0, 0, 5, 5);
+        gbc_labelHpInimigo.gridx = 1;
+        gbc_labelHpInimigo.gridy = 2;
+        labelHpInimigo.setVisible(false);
+        contentPanel.add(labelHpInimigo, gbc_labelHpInimigo);
         
         barraHpInimigo = new JProgressBar();
-        barraHpInimigo.setValue(50);
+        barraHpInimigo.setValue(100);
         barraHpInimigo.setToolTipText("");
         barraHpInimigo.setStringPainted(true);
         barraHpInimigo.setForeground(new Color(153, 0, 0));
@@ -79,11 +82,11 @@ public class SalaPanel extends JPanel {
         gbc_barraHpInimigo.insets = new Insets(0, 0, 5, 5);
         gbc_barraHpInimigo.gridx = 1;
         gbc_barraHpInimigo.gridy = 3;
+        barraHpInimigo.setVisible(false);
         contentPanel.add(barraHpInimigo, gbc_barraHpInimigo);
         
-        labelImagem = new JLabel("");
+        labelImagem = new JLabel();
         labelImagem.setHorizontalAlignment(SwingConstants.CENTER);
-        labelImagem.setIcon(null);
         GridBagConstraints gbc_labelImagem = new GridBagConstraints();
         gbc_labelImagem.gridwidth = 2;
         gbc_labelImagem.insets = new Insets(0, 0, 5, 5);
@@ -129,7 +132,7 @@ public class SalaPanel extends JPanel {
         
         barraHp = new JProgressBar();
         barraHp.setToolTipText("");
-        barraHp.setValue(50);
+        barraHp.setValue(100);
         barraHp.setStringPainted(true);
         barraHp.setForeground(new Color(153, 0, 0));
         GridBagConstraints gbc_barraHp = new GridBagConstraints();
@@ -152,7 +155,7 @@ public class SalaPanel extends JPanel {
         barraMp = new JProgressBar();
         barraMp.setForeground(Color.BLUE);
         barraMp.setStringPainted(true);
-        barraMp.setValue(75);
+        barraMp.setValue(100);
         GridBagConstraints gbc_barraMp = new GridBagConstraints();
         gbc_barraMp.fill = GridBagConstraints.HORIZONTAL;
         gbc_barraMp.gridwidth = 2;
@@ -200,5 +203,9 @@ public class SalaPanel extends JPanel {
 
     public JProgressBar getBarraHpInimigo() {
         return barraHpInimigo;
+    }
+
+    public JLabel getLabelHpInimigo() {
+        return labelHpInimigo;
     }
 }

@@ -9,8 +9,6 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class SelecaoSalaPanel extends JPanel {
     private static final long serialVersionUID = -7063787468413315273L;

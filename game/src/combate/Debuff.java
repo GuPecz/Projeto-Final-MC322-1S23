@@ -25,13 +25,11 @@ public class Debuff extends EfeitoStatus {
      * - recebedor: personagem que receberá o debuff
      */
     @Override
-    public int executar(Personagem usuario, Personagem recebedor)  throws AcaoIndisponivelException{
-        if (! getHabilitado())
-            throw new AcaoIndisponivelException("A acão ainda não foi desbloqueada!");
+    public String executar(Personagem usuario, Personagem recebedor) {
         // usuario só é passado como argumento para sobrescrever
         // o método, não é utilizado para o debuff
         debuffar(recebedor);
-        return getAlteracaoStatus();
+        return getMsgUso();
     }
 
 }

@@ -31,39 +31,26 @@ public class ListenerBotaoSala implements ActionListener {
             case "Pocao":
                 novoTexto = pocoes;
                 break;
-            case "Soco":
-
-                break;
-            case "Espada":
-
-                break;
-            case "Arco":
-
-                break;
             case "Fugir":
-                
+                controller.fugir();
                 break;
-            case "Magia de Fogo":
-                
+            case "Pegar":
+                controller.pegarItem();
                 break;
-            case "Magia de Agua":
-                
+            case "Descartar":
+                controller.descartarItem();
                 break;
-            case "Magia de Vento":
-
+            case "Frente":
+            case "Tras":
+            case "Cima":
+            case "Baixo":
+                controller.movimentarProtagonista(opcao);
                 break;
-            case "Pocao de Vida":
-
-                break;
-            case "Pocao de Mana":
-
-                break;
-            case "Pocao de Forca":
-                
-                break;
-            default:
+            case "Voltar":
                 novoTexto = acoesBatalha;
                 break;
+            default:
+                controller.executarAcao(opcao);
         }
 
         for (int i = 0; i < novoTexto.length; i++)

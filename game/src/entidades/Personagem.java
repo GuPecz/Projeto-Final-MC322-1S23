@@ -51,6 +51,8 @@ public abstract class Personagem {
      */
     public void reduzirVida(int vida) {
         hp -= vida;
+        if (hp < 0)
+            hp = 0;
     }
 
     /*
@@ -60,6 +62,8 @@ public abstract class Personagem {
      */
     public void regenerarVida(int vida) {
         hp += vida;
+        if (hp > hpMax)
+            hp = hpMax;
     }
 
     /*

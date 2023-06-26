@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Component;
 import java.awt.Dimension;
+
 import javax.swing.Box;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -25,7 +26,6 @@ public class MenuInicialPanel extends JPanel {
 		botaoConfig = new JButton("Configurações");
         botaoSair = new JButton("Sair");
 		initialize();
-
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class MenuInicialPanel extends JPanel {
 
         add(Box.createVerticalGlue());
     }
-    
+
     public JButton getBotaoJogar() {
         return botaoJogar;
     }

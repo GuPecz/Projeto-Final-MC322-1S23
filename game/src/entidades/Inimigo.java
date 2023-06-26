@@ -1,8 +1,6 @@
 package entidades;
 
-import java.util.List;
-import combate.Acao;
-import dados.CsvHandler;
+import java.util.Random;
 
 public class Inimigo extends Personagem {
     /* Atributos */
@@ -24,6 +22,10 @@ public class Inimigo extends Personagem {
         String str = super.toString().replaceFirst("Personagem", "Inimigo") +
             "\n\tloot: " + loot.getClass() + "\n\telemento: " + elemento;
         return str;
+    }
+
+    public String executarAcaoAleatoria(Protagonista protagonista) {
+        return getListaAcoes().get(Math.abs((new Random()).nextInt()) % getListaAcoes().size()).executar(this, protagonista);
     }
 
     /* Getters e setters */

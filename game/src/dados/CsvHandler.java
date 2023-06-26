@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import combate.Ataque;
 import combate.Buff;
@@ -101,12 +102,14 @@ public class CsvHandler {
                 // buff
                 if (linha[0].equals(nomePersonagem) && linha[1].equals("buff"))
                     // replaceAll("]", ",") para deixar msg com vírgula
-                    listaEfeitoStatus.add(new Buff(linha[2].replaceAll("]", ","),
-                            Boolean.valueOf(linha[3]), linha[5], Integer.valueOf(linha[4])));
+                    listaEfeitoStatus.add(new Buff(linha[2], Boolean.valueOf(linha[3]),
+                                                   linha[5].replaceAll("]", ","),
+                                                   Integer.valueOf(linha[4])));
                 // debuff
                 else if (linha[0].equals(nomePersonagem))
-                    listaEfeitoStatus.add(new Debuff(linha[2].replaceAll("]", ","),
-                            Boolean.valueOf(linha[3]), linha[5], Integer.valueOf(linha[4])));
+                    listaEfeitoStatus.add(new Debuff(linha[2], Boolean.valueOf(linha[3]),
+                                                   linha[5].replaceAll("]", ","),
+                                                   Integer.valueOf(linha[4])));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -120,13 +123,14 @@ public class CsvHandler {
      * Retorna um vetor com os dados para inicialização do inimigo todos como
      * String,
      * ints precisam ser convertidos
-     * TODO: Implementar seleção aleatória de elemento para os lacaios
      */
     public static String[] getDadosInimigo(String nomeInimigo) {
         String[] dados = {};
         // csv com: [0] nome, [1] hpMax, [2] def, [3] atq, [4] item, [5] elemento
+        String elementos[] = {"fogo", "agua", "vento", "gelo", "natureza", "terra", "eletricidade"};
         String tabela = "game/resources/dados-inimigos.csv";
         String strLinha;
+        Random random = new Random();
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(tabela));
@@ -134,10 +138,11 @@ public class CsvHandler {
             while ((strLinha = br.readLine()) != null) {
                 String[] linha = strLinha.split(",");
                 if (linha[0].equals(nomeInimigo)) {
-                    if (!linha[5].equals("random"))
+                    if (! linha[5].equals("random"))
                         dados = linha;
                     else {
-                        linha[5] = "elemento aleatório";
+                        // define elemento aleatorio
+                        linha[5] = elementos[Math.abs(random.nextInt()) % 6];
                         dados = linha;
                     }
                     break;
