@@ -45,6 +45,8 @@ public class GameModel {
      * checar o que tem - adaptar view de acordo
      */
     public void movimentacao(String direcao) {
+        if (!salaAtual.getJaVisitada())
+            Score.incrementarSalasVisitadas();
         if (direcao.equals("Cima")) {
             mapa.moverPersonagem(1, 0);
         } else if (direcao.equals("Baixo")) {
@@ -54,7 +56,6 @@ public class GameModel {
         } else if (direcao.equals("Tras")) {
             mapa.moverPersonagem(0, -1);
         }
-        Score.incrementarSalasVisitadas();
         salaAtual = mapa.getSalas()[mapa.getLocalizacaoProtagonista()[0]][mapa.getLocalizacaoProtagonista()[1]];
     }
 
@@ -80,6 +81,7 @@ public class GameModel {
         //     protagonista.coletarItem(salaAtual.getInimigo().getLoot());
         //     salaAtual.setInimigo(null);
         // }
+        Score.incrementarQtdItensColetado();
         descartarItem();
     }
 
