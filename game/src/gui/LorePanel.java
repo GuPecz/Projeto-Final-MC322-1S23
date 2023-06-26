@@ -34,14 +34,14 @@ public class LorePanel extends JPanel {
 	    		+ "  Em tempos dificuldade, um homem ganancioso extorque os necessitados dizendo ter a salvação. \r<br>"
 	    		+ "  Pobres almas manipuladas pelo sua suposta habilidade de juntar riquezas o seguem agora.\r<br>"
 	    		+ "  \r<br>"
-	    		+ "  Um aterrador ancião leva a mente de quem o ouve a mais insana confusão.\r<br>"
-	    		+ "  Tolamente alguns o seguem como discípulos na falsa esperança de entender seus discursos incompreensíveis...\r<br>"
-	    		+ "  \r<br>"
-	    		+ "  Dizem ainda que, nos momentos mais desafortunados, conseguem ouvir uma melodia assustadora e se sentem um arrepio na espinha,\r<br>"
+	    		+ "  Dizem ainda que, nos momentos mais desafortunados, conseguem ouvir uma melodia assustadora,\r<br>"
 	    		+ "  como se a própria morte estivesse a seu lado quando então avistam uma figura ao longe produzindo tais sons.\r<br>"
 	    		+ "  Mesmo esta criatura conseguiu reunir lacaios que tentam imitá-la.\r<br>"
 	    		+ "  \r<br>"
-	    		+ "  Por favor, eles usam uma torre como covil, invada-a e nos salve!</html>");
+	    		+ "  E a raiz desse mal... Um aterrador ancião que leva a mente de quem o ouve a mais insana confusão.\r<br>"
+	    		+ "  Tolamente alguns o seguem como discípulos na falsa esperança de entender seus discursos incompreensíveis...\r<br>"
+	    		+ "  \r<br>"
+	    		+ "  Por favor, eles usam uma torre como covil, derrote o Ancião!</html>");
 	    labelLore.setHorizontalAlignment(SwingConstants.CENTER);
 	    labelLore.setAlignmentX(Component.CENTER_ALIGNMENT);
 	    labelLore.setFont(new Font("Monotype Corsiva", Font.BOLD, 20));
@@ -81,12 +81,12 @@ public class LorePanel extends JPanel {
  * Em tempos dificuldade, um homem ganancioso extorque os necessitados dizendo ter a salvação. 
  * Pobres almas manipuladas pelo sua suposta habilidade de juntar riquezas o seguem agora.
  * 
- * Um aterrador ancião leva a mente de quem o ouve a mais insana confusão.
- * Tolamente alguns o seguem como discípulos na falsa esperança de entender seus discursos incompreensíveis...
- * 
- * Dizem ainda que, nos momentos mais desafortunados, conseguem ouvir uma melodia assustadora e se sentem um arrepio na espinha,
+ * Dizem ainda que, nos momentos mais desafortunados, conseguem ouvir uma melodia assustadora,
  * como se a própria morte estivesse a seu lado quando então avistam uma figura ao longe produzindo tais sons.
  * Mesmo esta criatura conseguiu reunir lacaios que tentam imitá-la.
+ * 
+ * E a raiz desse mal... Um aterrador ancião que leva a mente de quem o ouve a mais insana confusão.
+ * Tolamente alguns o seguem como discípulos na falsa esperança de entender seus discursos incompreensíveis.
  * 
  * Por favor, eles usam uma torre como covil, invada-a e nos salve!
  */
