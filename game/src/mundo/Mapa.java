@@ -136,10 +136,10 @@ public class Mapa {
      * destino = id da sala de destino
      */
     public void moverPersonagem(int movLinha, int movColuna) {
-        localizacaoProtagonista[0] += movLinha;
-        localizacaoProtagonista[1] += movColuna;
         Sala salaAtual = salas[localizacaoProtagonista[0]][localizacaoProtagonista[1]];
         if (!salaAtual.getJaVisitada())
             salaAtual.setJaVisitada(true);
+        localizacaoProtagonista[0] += movLinha;
+        localizacaoProtagonista[1] += movColuna;
     }
 }
