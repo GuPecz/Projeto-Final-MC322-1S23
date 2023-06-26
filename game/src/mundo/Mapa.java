@@ -118,13 +118,13 @@ public class Mapa {
             conexoes[1] = true;
 
         // Checando cima
-        if (linha < ordem - 1) // Checando se não é o último andar
-            if (salas[linha][coluna].getTemEscada() && salas[linha + 1][coluna].getTemEscada()) // Checando se a sala atual tem escada e a de cima também
+        if ((linha < ordem - 1) // Checando se não é o último andar
+            && (salas[linha][coluna].getTemEscada() && salas[linha + 1][coluna].getTemEscada())) // Checando se a sala atual tem escada e a de cima também
                 conexoes[2] = true;
 
         // Checando baixo
-        if (linha > 0) // Checando se não é o primeiro andar
-            if (salas[linha][coluna].getTemEscada() && salas[linha - 1][coluna].getTemEscada()) // Checando se a sala atual tem escada e a de baixo também
+        if ((linha > 0) // Checando se não é o primeiro andar
+            && (salas[linha][coluna].getTemEscada() && salas[linha - 1][coluna].getTemEscada())) // Checando se a sala atual tem escada e a de baixo também
                 conexoes[3] = true;
 
         return conexoes;

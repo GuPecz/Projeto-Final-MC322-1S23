@@ -107,7 +107,7 @@ public class GameController {
     }
 
     private void gerarSala() {
-        int pos[] = model.getPosicaoProtagonista();
+        int[] pos = model.getPosicaoProtagonista();
         view.atualizarDisplaySala(pos[0], pos[1]);
         if (model.getSalaAtual().getInimigo() != null)
             mostrarInimigo();

@@ -19,9 +19,8 @@ public class Inimigo extends Personagem {
 
     /* toString() */
     public String toString() {
-        String str = super.toString().replaceFirst("Personagem", "Inimigo") +
+        return super.toString().replaceFirst("Personagem", "Inimigo") +
             "\n\tloot: " + loot.getClass() + "\n\telemento: " + elemento;
-        return str;
     }
 
     public String executarAcaoAleatoria(Protagonista protagonista) {

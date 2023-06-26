@@ -9,7 +9,7 @@ public abstract class Acao {
     private String msgUso;
 
     /* Construtor */
-    public Acao(String nome, boolean habilitado, String msgUso) {
+    protected Acao(String nome, boolean habilitado, String msgUso) {
         this.nome = nome;
         this.habilitado = habilitado;
         this.msgUso = msgUso;
@@ -38,9 +38,9 @@ public abstract class Acao {
 
     /* toString() */
     public String toString() {
-        String str = "Acao:\n\tnome: " + nome + "\n\thabilitado: " + habilitado +
-                     "\n\tmsgUso: " + msgUso;
-        return str;
+        return "Acao:\n\tnome: " + nome + 
+                "\n\thabilitado: " + habilitado +
+                "\n\tmsgUso: " + msgUso;
     }
 
     /* Getters e setters */

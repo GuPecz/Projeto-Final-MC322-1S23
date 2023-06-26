@@ -20,11 +20,10 @@ public abstract class Personagem {
     private final List<Acao> listaAcoes;
 
     /* Construtor sem ataques */
-    public Personagem(String nome, int hpMax, int def, int atq) {
+    protected Personagem(String nome, int hpMax, int def, int atq) {
         this.nome = nome;
         this.hp = this.hpMax = hpMax;
         this.def = this.defAtual = def;
-        this.defAtual = def;
         this.atq = this.atqAtual = atq;
         listaAcoes = new ArrayList<Acao>();
         importarAcoes();

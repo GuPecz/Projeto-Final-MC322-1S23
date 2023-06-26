@@ -52,7 +52,6 @@ public class GameView {
 	}
 
 	public void displayMensagemUso(String msgPlayer, String msgInimigo) {
-	 	String NL ="<html><br></html>";
 		salaPanel.getLabelTexto().setText("<html>" + (msgPlayer + "<br>" +
 										  msgInimigo).replaceAll(" ", "&nbsp;") + "</html>");
 	}

@@ -20,7 +20,7 @@ public class ListenerBotaoSala implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         String opcao = ((JButton) e.getSource()).getText();
-        String novoTexto[] = {};
+        String[] novoTexto = {};
         switch (opcao) {
             case "Ataque":
                 novoTexto = ataques;

@@ -127,7 +127,7 @@ public class CsvHandler {
     public static String[] getDadosInimigo(String nomeInimigo) {
         String[] dados = {};
         // csv com: [0] nome, [1] hpMax, [2] def, [3] atq, [4] item, [5] elemento
-        String elementos[] = {"fogo", "agua", "vento", "gelo", "natureza", "terra", "eletricidade"};
+        String[] elementos = {"fogo", "agua", "vento", "gelo", "natureza", "terra", "eletricidade"};
         String tabela = "game/resources/dados-inimigos.csv";
         String strLinha;
         Random random = new Random();

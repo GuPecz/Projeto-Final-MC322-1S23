@@ -5,7 +5,7 @@ public abstract class EfeitoStatus extends Acao {
     private int alteracaoStatus;
 
     /* Construtor */
-    public EfeitoStatus(String nome, boolean habilitado, String msgUso, int alteracaoStatus) {
+    protected EfeitoStatus(String nome, boolean habilitado, String msgUso, int alteracaoStatus) {
         super(nome, habilitado, msgUso);
         this.alteracaoStatus = alteracaoStatus;
     }
