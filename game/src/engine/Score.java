@@ -2,6 +2,9 @@ package engine;
 
 import java.io.*;
 import java.util.Formatter;
+import java.util.NoSuchElementException;
+
+import javax.swing.text.PlainDocument;
 
 public class Score {
     /* Atributos */
@@ -9,7 +12,7 @@ public class Score {
     private static int inimigosEliminados = 0;
     private static int danoRecebido = 0;
     private static int danoCausado = 0;
-    private static int qtdSalasVisitadas = 0;
+    private static int qtdSalasVisitadas = 2; // Contando a sala inicial e a sala final a partir de onde você não se move
     private static int qtdItensColetado = 0;
 
 	public static void incrementarInimigosEliminados() {
@@ -37,29 +40,19 @@ public class Score {
     }
 
     public static void escreverScore() {
+        Score.calcularScore();
         String nomeArquivo = "score.text";
-        Formatter output = null;
+        BufferedWriter output = null;
+        String texto = String.format("Inimimigos eliminados = %d\nDano recebido = %d\nDano causado = %d\nSalas visitadas = %d"
+            + "\nItens = %d\n\nScore = %d", inimigosEliminados, danoRecebido, danoCausado, qtdSalasVisitadas, qtdItensColetado, score);;
         try {
-            output = new Formatter(nomeArquivo);
-            output.format("Inimimigos eliminados = %d\nDano recebido = %d\nDano causado = %d\nSalas visitadas = %d\n"
-            + "\nItens = %d\n\nScore = %d", inimigosEliminados, danoRecebido, danoCausado, qtdSalasVisitadas, qtdItensColetado, score);
-            output.flush();
+            output = new BufferedWriter(new FileWriter(new File(nomeArquivo)));
+            output.write(texto);
+            output.close();
 		} catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            output.close();
         }
     }
-
-    /*
-        if (br != null) {
-            try {
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    */
 
     public static int getDanoCausado() {
         return danoCausado;
