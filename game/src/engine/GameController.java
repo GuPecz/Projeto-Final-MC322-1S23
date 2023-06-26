@@ -99,6 +99,11 @@ public class GameController {
                 System.exit(0);
             }
         });
+        view.getTelaFinalPanel().getBotaoVoltarMenu().addActionListener(new ActionListener () {
+            public void actionPerformed(ActionEvent ev) {
+                new GameController();
+            }
+        });
     }
 
     private void gerarSala() {
@@ -147,11 +152,12 @@ public class GameController {
 
     private void inimigoDerrotado() {
         String nomeInimigo = model.getSalaAtual().getInimigo().getNome();
-        Score.incrementarInimigosEliminados();
         view.mostrarInimigoDerrotado(nomeInimigo,
                                      model.inimigoMorreu());
-        if (nomeInimigo.equals("Anciao"))
+        if (nomeInimigo.equals("Anciao")){
             view.mostrarPanel("telaFinal");
+            Score.escreverScore();
+        }
     }
 
     public void executarAcao(String acao) {
@@ -166,6 +172,7 @@ public class GameController {
             msgUsoInimigo = model.executarAcaoInimigo();
             if (! model.getProtagonista().vivo()) {
                 view.mostrarPanel("gameOver");
+                Score.escreverScore();
                 return;
             }
             valoresBarra = model.getVidaMana();
