@@ -70,7 +70,9 @@ public class GameView {
         }
 		labelTexto.setText("");
 		if (direcoesDisponiveis[2])
-			labelTexto.setText(" Voce ve uma escada.");
+			labelTexto.setText(" Voce ve uma escada para subir.");
+		else if (direcoesDisponiveis[3])
+		 	labelTexto.setText(" Voce ve uma escada para descer.");
 		labelTexto.setText(labelTexto.getText() + " Para onde deseja ir?");
 	}
 
