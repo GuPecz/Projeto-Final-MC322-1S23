@@ -94,7 +94,7 @@ public class GameController {
     }
 
     private void addListenersMenuFinal() {
-        view.getTelaFinalPanelGameOver().getBotaoVoltarMenu().addActionListener(new ActionListener () {
+        view.getTelaFinalPanelGameOver().getbotaoSair().addActionListener(new ActionListener () {
             public void actionPerformed(ActionEvent ev) {
                 System.exit(0);
             }
