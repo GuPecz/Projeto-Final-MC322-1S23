@@ -99,9 +99,9 @@ public class GameController {
                 System.exit(0);
             }
         });
-        view.getTelaFinalPanel().getBotaoVoltarMenu().addActionListener(new ActionListener () {
+        view.getTelaFinalPanel().getBotaoSair().addActionListener(new ActionListener () {
             public void actionPerformed(ActionEvent ev) {
-                new GameController();
+                System.exit(0);
             }
         });
     }

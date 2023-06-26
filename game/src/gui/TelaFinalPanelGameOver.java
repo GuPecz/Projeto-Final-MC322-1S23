@@ -19,7 +19,7 @@ public class TelaFinalPanelGameOver extends JPanel {
 	
 	public TelaFinalPanelGameOver() {
 		super();
-		botaoSair = new JButton("Voltar para o Menu");
+		botaoSair = new JButton("Sair");
 		inicializar();
 	}
 	
