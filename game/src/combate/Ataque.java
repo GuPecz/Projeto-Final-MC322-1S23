@@ -1,6 +1,9 @@
 package combate;
 
+import engine.Score;
+import entidades.Inimigo;
 import entidades.Personagem;
+import entidades.Protagonista;
 
 public class Ataque extends Acao {
     /* Atributos */
@@ -31,6 +34,10 @@ public class Ataque extends Acao {
     public String executar(Personagem usuario, Personagem oponente) {
         int dano = danoCausado(usuario, oponente);
         oponente.reduzirVida(dano);
+        if (oponente instanceof Inimigo)
+            Score.incrementarDanoCausado(dano);
+        else if (oponente instanceof Protagonista)
+            Score.incrementarDanoRecebido(dano);
         return String.format(getMsgUso(), dano);
     }
 
