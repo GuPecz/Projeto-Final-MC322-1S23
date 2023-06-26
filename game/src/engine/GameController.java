@@ -94,7 +94,11 @@ public class GameController {
     }
 
     private void addListenersMenuFinal() {
-        view.getTelaFinalPanelGameOver().getBotaoVoltarMenu().addActionListener(new ListenerVoltarMenuInicial());
+        view.getTelaFinalPanelGameOver().getBotaoVoltarMenu().addActionListener(new ActionListener () {
+            public void actionPerformed(ActionEvent ev) {
+                new GameController();
+            }
+        });
     }
 
     private void gerarSala() {
@@ -172,5 +176,4 @@ public class GameController {
             view.getSalaPanel().getLabelTexto().setText(e.getMessage());
         }
     }
-
 }
