@@ -8,6 +8,9 @@ Assobiador,Foice,1.0,true,O Assobiador te atinge com sua foice] causando %d de d
 Anciao,Chinelo,1.0,true,O Anciao lanca um chinelo em voce] causando %d de dano!
 Anciao,Decaimento do Uranio,1.25,true,O Anciao acelera uma particula de Uranio] te atingindo com radiacao alfa e causando %d de dano!
 Anciao,Centro de momento,1.3,true,O Anciao comeca a falar sobre um tal centro de momento e a confusao mental te causa %d de dano!
+Anciaozinho,Chinelinho,1.0,true,O Anciaozinho lanca um chinelinho em voce] causando %d de deano!
+Anciaozinho,Decaimentozinho do Uranio,1.25,true,O Anciaozinho acelera uma particulinha de Uranio] te atingindo com radiacaozinha alfa e causando %d de dano!
+Anciaozinho,Centro de momentinho,1.3,true,O Anciaozinho comeca a falar sobre um tal centro de momentinho e a confusaozinha mental te causa %d de dano!
 Ganancioso,Scam,1.2,true,O Ganancioso te induz a comprar um curso] te scammando de %d de hp!
 Ganancioso,Spam,1.1,true,O Ganancioso te spamma e-mails] causando %d de dano!
 Ganancioso,Historia,1.15,true,O Ganancioso se sente inseguro sobre a etica de suas acoes e conta sua tediosa historia causando %d de dano!
@@ -16,4 +19,4 @@ FfffFffff,Faca,1.0,true,O FfffFffff te acerta uma facada] causando %d de dano!
 Discipulo,Pergunta,0.8,true,O Discipulo te faz uma pergunta insistente causando %d de dano!
 Discipulo,Livro,1.0,true,O Discipulo te acerta com um livro pesado causando %d de dano!
 Empreendedor,Exaltacao,0.8,true,O Empreendedor exalta a figura do Ganancioso e esse puxa-saquismo te causa %d de dano
-Empreendedor,Mindset,1.0,true,O Empreendedor diz que o sucesso e so questao de mindest, te causando %d de dano
+Empreendedor,Mindset,1.0,true,O Empreendedor diz que o sucesso e so questao de mindest] te causando %d de dano
