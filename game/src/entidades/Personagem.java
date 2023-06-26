@@ -107,7 +107,6 @@ public abstract class Personagem {
     }
 
     /* Retorna boolean indicando se o personagem esta vivo */
-    // TODO - mudar nome?
     public boolean vivo() {
         return hp > 0;
     }
