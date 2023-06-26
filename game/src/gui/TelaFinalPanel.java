@@ -13,11 +13,11 @@ import javax.swing.JLabel;
 public class TelaFinalPanel extends JPanel {
 	private static final long serialVersionUID = -206352147739041979L;
 
-	private JButton botaoVoltarMenu;
+	private JButton botaoSair;
 	
 	public TelaFinalPanel() {
 		super();
-		botaoVoltarMenu = new JButton("Voltar para o Menu");
+		botaoSair = new JButton("Voltar para o Menu");
 		inicializar();
 	}
 	
@@ -36,17 +36,17 @@ public class TelaFinalPanel extends JPanel {
         add(panel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         
-        panel.add(botaoVoltarMenu);
-        botaoVoltarMenu.setFont(new Font("Tahoma", Font.PLAIN, 33));
-        botaoVoltarMenu.setAlignmentX(Component.CENTER_ALIGNMENT);
-        botaoVoltarMenu.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
+        panel.add(botaoSair);
+        botaoSair.setFont(new Font("Tahoma", Font.PLAIN, 33));
+        botaoSair.setAlignmentX(Component.CENTER_ALIGNMENT);
+        botaoSair.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
         Component verticalStrut_1 = Box.createVerticalStrut(40);
         panel.add(verticalStrut_1);
 	
 	}
 
-	public JButton getBotaoVoltarMenu() {
-		return botaoVoltarMenu;
+	public JButton getBotaoSair() {
+		return botaoSair;
 	}
 	
 }
