@@ -42,13 +42,10 @@ public class Score {
     public static void escreverScore() {
         Score.calcularScore();
         String nomeArquivo = "score.text";
-        BufferedWriter output = null;
-        String texto = String.format("Inimimigos eliminados = %d\nDano recebido = %d\nDano causado = %d\nSalas visitadas = %d"
+        String texto = String.format("Inimigos eliminados = %d\nDano recebido = %d\nDano causado = %d\nSalas visitadas = %d"
             + "\nItens = %d\n\nScore = %d", inimigosEliminados, danoRecebido, danoCausado, qtdSalasVisitadas, qtdItensColetado, score);;
-        try {
-            output = new BufferedWriter(new FileWriter(new File(nomeArquivo)));
+        try(BufferedWriter output = new BufferedWriter(new FileWriter(new File(nomeArquivo)))) {
             output.write(texto);
-            output.close();
 		} catch (IOException e) {
             e.printStackTrace();
         }
