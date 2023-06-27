@@ -5,9 +5,8 @@ import javax.swing.JPanel;
 import java.awt.CardLayout;
 
 import javax.swing.ImageIcon;
-import java.io.File;
-import javax.sound.sampled.*;
 
+// gerado com Window Builder
 public class GameFrame extends JFrame {
 	private static final long serialVersionUID = 303308866722346454L;
 	private JPanel cardPanel;
@@ -38,7 +37,6 @@ public class GameFrame extends JFrame {
 
         getContentPane().setLayout(new CardLayout(0, 0));
         getContentPane().add(cardPanel);
-        musicThread.start();
         
         setIconImage(new ImageIcon("game/assets/outros/icon.png").getImage());
     }
@@ -50,27 +48,4 @@ public class GameFrame extends JFrame {
     public CardLayout getCardLayout() {
     	return cardLayout;
     }
-
-	private static void playMusic(File musicFile) {
-		try {
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(musicFile);
-			Clip clip = AudioSystem.getClip();
-			clip.open(audioStream);
-			clip.loop(Clip.LOOP_CONTINUOUSLY);
-			clip.start();
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	Thread musicThread = new Thread(() -> {
-		try {
-			File backgroundMusic = new File("game/assets/outro/background_music.wav");
-			playMusic(backgroundMusic);
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	});
 }
