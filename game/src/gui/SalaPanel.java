@@ -13,6 +13,7 @@ import javax.swing.JProgressBar;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
+// gerado com Window Builder
 public class SalaPanel extends JPanel {
 	private static final long serialVersionUID = -476786453758437071L;
 	private JLabel labelPosicao;
@@ -21,6 +22,9 @@ public class SalaPanel extends JPanel {
 	private JProgressBar barraHp;
 	private JProgressBar barraHpInimigo;
 	private JProgressBar barraMp;
+    // posicoes dos botoes:
+    // botao1 botao2
+    // botao3 botao4
 	private JButton botao1;
 	private JButton botao2;
 	private JButton botao3;
@@ -52,7 +56,7 @@ public class SalaPanel extends JPanel {
         
         labelTexto = new JLabel("Lorem ipsum dolor sit amet, consectetur adipiscing elit. In finibus commodo diam, sit amet malesuada nulla fringilla eu");
         labelTexto.setHorizontalAlignment(SwingConstants.CENTER);
-        labelTexto.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        labelTexto.setFont(new Font("Tahoma", Font.BOLD, 18));
         GridBagConstraints gbc_labelTexto = new GridBagConstraints();
         gbc_labelTexto.gridwidth = 2;
         
@@ -62,7 +66,7 @@ public class SalaPanel extends JPanel {
         contentPanel.add(labelTexto, gbc_labelTexto);
         
         labelHpInimigo = new JLabel("Nome inimigo");
-        labelHpInimigo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        labelHpInimigo.setFont(new Font("Tahoma", Font.BOLD, 15));
         GridBagConstraints gbc_labelHpInimigo = new GridBagConstraints();
         gbc_labelHpInimigo.gridwidth = 2;
         gbc_labelHpInimigo.insets = new Insets(0, 0, 5, 5);
@@ -179,6 +183,10 @@ public class SalaPanel extends JPanel {
 
     public JButton getBotao4() {
         return botao4;
+    }
+
+    public JButton[] getListaBotoes() {
+        return new JButton[] {botao1, botao2, botao3, botao4};
     }
 
     public JProgressBar getBarraHp() {

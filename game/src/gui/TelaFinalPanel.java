@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 
+// gerado com Window Builder
 public class TelaFinalPanel extends JPanel {
 	private static final long serialVersionUID = -206352147739041979L;
 
@@ -17,7 +18,7 @@ public class TelaFinalPanel extends JPanel {
 	
 	public TelaFinalPanel() {
 		super();
-		botaoSair = new JButton("Voltar para o Menu");
+		botaoSair = new JButton("Sair");
 		inicializar();
 	}
 	
