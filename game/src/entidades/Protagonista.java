@@ -48,16 +48,22 @@ public class Protagonista extends Personagem {
             case "Magia de Fogo":
                 if (! getListaMagias().get(0).getHabilitado())
                     throw new AcaoIndisponivelException("Voce ainda nao encontrou o Pergaminho de Fogo");
+                else if (mp < 20)
+                    throw new AcaoIndisponivelException("Voce nao tem mana!");
                 msgUso = listaMagias.get(0).executar(this, inimigo);
                 break;
             case "Magia de Agua":
                 if (! getListaMagias().get(1).getHabilitado())
                     throw new AcaoIndisponivelException("Voce ainda nao encontrou o Pergaminho de Agua");
+                else if (mp < 20)
+                    throw new AcaoIndisponivelException("Voce nao tem mana!");
                 msgUso = listaMagias.get(1).executar(this, inimigo);
                 break;
             case "Magia de Vento":
                 if (! getListaMagias().get(2).getHabilitado())
                     throw new AcaoIndisponivelException("Voce ainda nao encontrou o Pergaminho de Vento");
+                else if (mp < 20)
+                    throw new AcaoIndisponivelException("Voce nao tem mana!");
                 msgUso = listaMagias.get(2).executar(this, inimigo);
                 break;
             case "Soco":

@@ -17,7 +17,7 @@ public class GameModel {
     }
     
     private void inicializarProtagonista() {
-        protagonista = new Protagonista(100, 100, 100, 100);
+        protagonista = new Protagonista(200, 100, 100, 100);
     }
 
     /* Retorna o loot do inimigo e remove ele da sala */
