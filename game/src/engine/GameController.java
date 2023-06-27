@@ -130,12 +130,14 @@ public class GameController {
     public void pegarItem() {
         //Score.incrementarLootColetado();
         model.pegarItem();
-        view.mostrarDirecoesPossiveis(model.getDirecoesPossiveis());        
+        view.mostrarDirecoesPossiveis(model.getDirecoesPossiveis());
+        view.resetarImagem();
     }
 
     public void descartarItem() {
         model.descartarItem();
-        view.mostrarDirecoesPossiveis(model.getDirecoesPossiveis());        
+        view.mostrarDirecoesPossiveis(model.getDirecoesPossiveis());
+        view.resetarImagem();
     }
 
     private void mostrarInimigo() {

@@ -1,9 +1,5 @@
 package engine;
 
-import java.awt.Image;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -49,10 +45,14 @@ public class GameView {
 	public void mostrarItem(String item) {
         if (item != null) {
             salaPanel.getLabelTexto().setText("Voce encontrou um(a) " + item + "! Deseja pegar?");
+			JLabel imagemItem = salaPanel.getLabelImagem();
+			imagemItem.setIcon(ImageHandler.imagemItem(item));
+			imagemItem.setVisible(true);
             salaPanel.getBotao1().setVisible(false);
             salaPanel.getBotao2().setVisible(false);
             salaPanel.getBotao3().setText("Pegar");
             salaPanel.getBotao4().setText("Descartar");
+
         }
 	}
 
@@ -136,6 +136,10 @@ public class GameView {
 	public void mostrarSalaVazia(boolean[] direcoesDisponiveis) {
 		mostrarDirecoesPossiveis(direcoesDisponiveis);
 		salaPanel.getLabelTexto().setText("Essa sala esta vazia." + salaPanel.getLabelTexto().getText());
+	}
+
+	public void resetarImagem() {
+		salaPanel.getLabelImagem().setVisible(false);
 	}
 
 	public void habilitarBotoesSala() {
