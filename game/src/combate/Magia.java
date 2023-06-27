@@ -1,6 +1,7 @@
 package combate;
 
 import dados.LeituraCsv;
+import engine.Score;
 import entidades.Inimigo;
 import entidades.Personagem;
 import entidades.Protagonista;
@@ -35,6 +36,7 @@ public class Magia extends Acao implements AtaqueInterface {
        ((Protagonista) usuario).reduzirMana(custoMp);
         msgUso = super.getMsgUso();
         msgUso = String.format(msgUso, oponente.getNome(), dano);
+        Score.incrementarDanoCausado(dano);
         if (multiplicador == 1.25) {
             msgUso += " Super efetivo!";
         } else {
