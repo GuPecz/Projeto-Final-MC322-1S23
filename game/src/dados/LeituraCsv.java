@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.MissingResourceException;
 import java.util.Random;
 
 import combate.Ataque;
@@ -13,6 +14,15 @@ import combate.Debuff;
 import combate.EfeitoStatus;
 
 public class LeituraCsv {
+    /* Retorna o arquivo com nomeArquivo */
+    private static BufferedReader abrirArquivo(String nomeArquivo) {
+        try {
+            return new BufferedReader(new FileReader(nomeArquivo));
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
     /* Fecha o arquivo referenciado pelo BufferedReader br */
     private static void fecharArquivo(BufferedReader br) {
         if (br != null) {
@@ -21,6 +31,15 @@ public class LeituraCsv {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    /* Le uma linha do arquivo e a retorna */
+    private static String lerLinha(BufferedReader br) {
+        try {
+            return br.readLine();
+        } catch (IOException e) {
+            return null;
         }
     }
 
@@ -33,21 +52,16 @@ public class LeituraCsv {
     public static double getMultiplicador(String elementoAtq, String elementoDef) {
         String tabela = "game/resources/efetividade-elementos-varias-linhas.csv";
         String strLinha;
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(tabela));
-            br.readLine(); // pular primeira linha
-            while ((strLinha = br.readLine()) != null) {
-                String[] linha = strLinha.split(","); // separa colunas por ","
-                if (linha[0].equals(elementoAtq) && linha[1].equals(elementoDef))
-                    return Double.parseDouble(linha[2]);
+        BufferedReader br = abrirArquivo(tabela);
+        lerLinha(br); // pular primeira linha
+        while ((strLinha = lerLinha(br)) != null) {
+            String[] linha = strLinha.split(","); // separa colunas por ","
+            if (linha[0].equals(elementoAtq) && linha[1].equals(elementoDef)) {
+                fecharArquivo(br);
+                return Double.parseDouble(linha[2]);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            fecharArquivo(br);
         }
-        return 0.;
+        throw new MissingResourceException("Elemento nao existe", "String", elementoAtq);
     }
 
     /*
@@ -61,22 +75,16 @@ public class LeituraCsv {
         // [4] msgUso
         String tabela = "game/resources/ataques.csv";
         String strLinha;
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(tabela));
-            br.readLine(); // pular primeira linha
-            while ((strLinha = br.readLine()) != null) {
-                String[] linha = strLinha.split(",");
-                if (linha[0].equals(nomePersonagem))
-                    // replaceAll("]", ",") para deixar msg com vírgula
-                    listaAtaques.add(new Ataque(linha[1], Boolean.parseBoolean(linha[3]),
-                            linha[4].replaceAll("]", ","), Double.parseDouble(linha[2])));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            fecharArquivo(br);
+        BufferedReader br = abrirArquivo(tabela);
+        lerLinha(br);
+        while ((strLinha = lerLinha(br)) != null) {
+            String[] linha = strLinha.split(",");
+            if (linha[0].equals(nomePersonagem))
+                // replaceAll("]", ",") para deixar msg com vírgula
+                listaAtaques.add(new Ataque(linha[1], Boolean.parseBoolean(linha[3]),
+                        linha[4].replaceAll("]", ","), Double.parseDouble(linha[2])));
         }
+        fecharArquivo(br);
         return listaAtaques;
     }
 
@@ -91,29 +99,23 @@ public class LeituraCsv {
         // [4] alteracaoStatus, [5] msgUso
         String tabela = "game/resources/efeitos-status.csv";
         String strLinha;
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(tabela));
-            br.readLine(); // pular primeira linha
-            while ((strLinha = br.readLine()) != null) {
-                String[] linha = strLinha.split(",");
-                // buff
-                if (linha[0].equals(nomePersonagem) && linha[1].equals("buff"))
-                    // replaceAll("]", ",") para deixar msg com vírgula
-                    listaEfeitoStatus.add(new Buff(linha[2], Boolean.valueOf(linha[3]),
-                                                   linha[5].replaceAll("]", ","),
-                                                   Integer.valueOf(linha[4])));
-                // debuff
-                else if (linha[0].equals(nomePersonagem))
-                    listaEfeitoStatus.add(new Debuff(linha[2], Boolean.valueOf(linha[3]),
-                                                   linha[5].replaceAll("]", ","),
-                                                   Integer.valueOf(linha[4])));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            fecharArquivo(br);
+        BufferedReader br = abrirArquivo(tabela);
+        lerLinha(br);
+        while ((strLinha = lerLinha(br)) != null) {
+            String[] linha = strLinha.split(",");
+            // buff
+            if (linha[0].equals(nomePersonagem) && linha[1].equals("buff"))
+                // replaceAll("]", ",") para deixar msg com vírgula
+                listaEfeitoStatus.add(new Buff(linha[2], Boolean.valueOf(linha[3]),
+                                                linha[5].replaceAll("]", ","),
+                                                Integer.valueOf(linha[4])));
+            // debuff
+            else if (linha[0].equals(nomePersonagem))
+                listaEfeitoStatus.add(new Debuff(linha[2], Boolean.valueOf(linha[3]),
+                                                linha[5].replaceAll("]", ","),
+                                                Integer.valueOf(linha[4])));
         }
+        fecharArquivo(br);
         return listaEfeitoStatus;
     }
 
@@ -129,28 +131,22 @@ public class LeituraCsv {
         String tabela = "game/resources/dados-inimigos.csv";
         String strLinha;
         Random random = new Random();
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(tabela));
-            br.readLine(); // pular primeira linha
-            while ((strLinha = br.readLine()) != null) {
-                String[] linha = strLinha.split(",");
-                if (linha[0].equals(nomeInimigo)) {
-                    if (! linha[5].equals("random"))
-                        dados = linha;
-                    else {
-                        // define elemento aleatorio
-                        linha[5] = elementos[Math.abs(random.nextInt()) % 6];
-                        dados = linha;
-                    }
-                    break;
+        BufferedReader br = abrirArquivo(tabela);
+        lerLinha(br);
+        while ((strLinha = lerLinha(br)) != null) {
+            String[] linha = strLinha.split(",");
+            if (linha[0].equals(nomeInimigo)) {
+                if (! linha[5].equals("random"))
+                    dados = linha;
+                else {
+                    // define elemento aleatorio
+                    linha[5] = elementos[Math.abs(random.nextInt()) % 6];
+                    dados = linha;
                 }
+                break;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            fecharArquivo(br);
         }
+        fecharArquivo(br);
         return dados;
     }
 
@@ -165,16 +161,10 @@ public class LeituraCsv {
         // csv com o conteúdo da matriz de Salas
         String tabela = "game/resources/dados-salas.csv";
         String strLinha;
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(tabela));
-            for (int i = 0; (strLinha = br.readLine()) != null; i++)
-                dados[i] = strLinha.split(",");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            fecharArquivo(br);
-        }
+        BufferedReader br = abrirArquivo(tabela);
+        for (int i = 0; (strLinha = lerLinha(br)) != null; i++)
+            dados[i] = strLinha.split(",");
+        fecharArquivo(br);
         return dados;
     }
 }
