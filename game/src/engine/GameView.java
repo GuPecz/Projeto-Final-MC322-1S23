@@ -117,7 +117,8 @@ public class GameView {
 	}
 
 	private void atualizarBarraInimigo(int vidaInimigo, int vidaMaxInimigo) {
-		salaPanel.getBarraHpInimigo().setValue((int) (((double) vidaInimigo) / vidaMaxInimigo * 100));
+		int porcentagem = Math.max(1, (int) (((double) vidaInimigo) / vidaMaxInimigo * 100));
+		salaPanel.getBarraHpInimigo().setValue(porcentagem);
 	}
 
 	private void atualizarBarrasProtagonista(int vidaProtag, int vidaMaxProtag,
