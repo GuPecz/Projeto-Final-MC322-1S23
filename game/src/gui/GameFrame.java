@@ -3,6 +3,7 @@ package gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
+
 import javax.swing.ImageIcon;
 import java.io.File;
 import javax.sound.sampled.*;
@@ -25,7 +26,7 @@ public class GameFrame extends JFrame {
      * @wbp.parser.entryPoint
      */
     private void initialize() {
-		setTitle("TODO - titulo");
+		setTitle("Torre dos pesadelos: o legado de sarah");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
     	setBounds(0, 0, 1280, 720);
