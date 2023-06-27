@@ -25,7 +25,7 @@ public class GameFrame extends JFrame {
      * @wbp.parser.entryPoint
      */
     private void initialize() {
-		setTitle("Torre dos pesadelos: o legado de sarah");
+		setTitle("Torre dos Pesadelos: O Legado de Sarah");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
     	setBounds(0, 0, 1280, 720);

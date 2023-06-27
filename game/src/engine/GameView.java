@@ -58,6 +58,12 @@ public class GameView {
 
 	// mostra as mensagens de uso das acoes do player e do inimigo (SalaPanel)
 	public void displayMensagemUso(String msgPlayer, String msgInimigo) {
+		int indiceQuebra;
+		if (msgInimigo.length() > 50) {
+			// formatacao p/ quebrar linha no primeiro espaco entre indice 50 e msgInimigo.length()
+			indiceQuebra = msgInimigo.substring(51, msgInimigo.length()).indexOf(" ") + 51;
+			msgInimigo = msgInimigo.substring(0, indiceQuebra).concat("<br>").concat(msgInimigo.substring(indiceQuebra).replaceFirst(" ", ""));
+		}
 		salaPanel.getLabelTexto().setText("<html>" + (msgPlayer + "<br>" +
 										  msgInimigo).replaceAll(" ", "&nbsp;") + "</html>");
 	}
