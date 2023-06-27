@@ -3,7 +3,7 @@ package dados;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-public class ImageHandler {
+public class LeituraImagem {
     public static Icon imagemInimigo(String inimigo) {
         String arquivo = String.format("game/assets/inimigo/%s.png", inimigo);
         Icon imagem = new ImageIcon(arquivo);

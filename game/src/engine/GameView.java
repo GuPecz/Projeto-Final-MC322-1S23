@@ -5,13 +5,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-import dados.ImageHandler;
+import dados.LeituraImagem;
 import gui.*;
 
 public class GameView {
 	private GameFrame gameFrame;
 	private MenuInicialPanel menuInicialPanel;
-	private CombatePanel combatePanel;
 	private ConfigPanel configPanel;
 	private LorePanel lorePanel;
 	private PedirNomePanel pedirNomePanel;
@@ -24,8 +23,6 @@ public class GameView {
 		gameFrame = new GameFrame();
 		menuInicialPanel = new MenuInicialPanel();
 		addPainelPrincipal(menuInicialPanel, "menuInicial");
-		combatePanel = new CombatePanel();
-		addPainelPrincipal(combatePanel, "combate");
 		configPanel = new ConfigPanel();
 		addPainelPrincipal(configPanel, "config");
 		lorePanel = new LorePanel();
@@ -46,7 +43,7 @@ public class GameView {
         if (item != null) {
             salaPanel.getLabelTexto().setText("Voce encontrou um(a) " + item + "! Deseja pegar?");
 			JLabel imagemItem = salaPanel.getLabelImagem();
-			imagemItem.setIcon(ImageHandler.imagemItem(item));
+			imagemItem.setIcon(LeituraImagem.imagemItem(item));
 			imagemItem.setVisible(true);
             salaPanel.getBotao1().setVisible(false);
             salaPanel.getBotao2().setVisible(false);
@@ -91,7 +88,7 @@ public class GameView {
     	JProgressBar barraHpInimigo = salaPanel.getBarraHpInimigo();
 		JLabel imagemInimigo = salaPanel.getLabelImagem();
     	salaPanel.getLabelTexto().setText("Oh não, é o " + nome + " do Reino de " + elemento + "!!");
-		imagemInimigo.setIcon(ImageHandler.imagemInimigo(nome));
+		imagemInimigo.setIcon(LeituraImagem.imagemInimigo(nome));
     	labelHpInimigo.setText(nome);
 		imagemInimigo.setVisible(true);
     	labelHpInimigo.setVisible(true);
@@ -162,10 +159,6 @@ public class GameView {
 	}
 	
 	// getters
-
-	public CombatePanel getCombatePanel() {
-		return combatePanel;
-	}
 
 	public ConfigPanel getConfigPanel() {
 		return configPanel;
