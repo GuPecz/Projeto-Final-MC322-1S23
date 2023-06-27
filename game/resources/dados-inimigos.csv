@@ -1,8 +1,8 @@
 nome,hpMax,def,atq,item,elemento
-Assobiador,500,200,100,Pergaminho de Vento,vento
-FfffFffff,50,25,25,Flecha,random
-Ganancioso,400,400,50,Pergaminho de Fogo,fogo
-Empreendedor,125,75,75,Pocao de Vida,random
-Anciaozinho,550,80,150,Pergaminho de Agua,agua
-Anciao,600,100,200,Uranio,agua
-Discipulo,100,50,50,Pocao de Mana,random
+Assobiador,400,50,25,Pergaminho de Vento,vento
+FfffFffff,50,25,15,Flecha,random
+Ganancioso,350,50,35,Pergaminho de Fogo,fogo
+Empreendedor,125,40,35,Pocao de Vida,random
+Besta,450,80,40,Pergaminho de Agua,agua
+Anciao,550,100,50,Uranio,agua
+Discipulo,140,40,30,Pocao de Mana,random
