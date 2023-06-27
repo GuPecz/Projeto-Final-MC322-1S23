@@ -21,27 +21,6 @@ public class Mapa {
         salas[0][0].setJaVisitada(true);
     }
     
-    /* Getters e setters */
-    public int getOrdem() {
-        return ordem;
-    }
-    
-    public void setOrdem(int ordem) {
-        this.ordem = ordem;
-    }
-
-    public Sala[][] getSalas() {
-        return salas;
-    }
-    
-    public int[] getLocalizacaoProtagonista() {
-        return localizacaoProtagonista;
-    }
-
-    public void setLocalizacaoProtagonista(int[] localizacaoProtagonista) {
-        this.localizacaoProtagonista = localizacaoProtagonista;
-    }
-
     /*
      * Inicializa as salas com seus conteúdos
      */
@@ -141,5 +120,26 @@ public class Mapa {
             salaAtual.setJaVisitada(true);
         localizacaoProtagonista[0] += movLinha;
         localizacaoProtagonista[1] += movColuna;
+    }
+
+    /* Getters e setters */
+    public int getOrdem() {
+        return ordem;
+    }
+    
+    public void setOrdem(int ordem) {
+        this.ordem = ordem;
+    }
+
+    public Sala[][] getSalas() {
+        return salas;
+    }
+    
+    public int[] getLocalizacaoProtagonista() {
+        return localizacaoProtagonista;
+    }
+
+    public void setLocalizacaoProtagonista(int[] localizacaoProtagonista) {
+        this.localizacaoProtagonista = localizacaoProtagonista;
     }
 }
