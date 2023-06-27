@@ -1,10 +1,15 @@
 package engine;
 
+import java.awt.Image;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
+import dados.ImageHandler;
 import gui.*;
 
 public class GameView {
@@ -85,8 +90,11 @@ public class GameView {
 	public void mostrarInimigo(String nome, String elemento, int hpInimigo, int hpMaxInimigo) {
 		JLabel labelHpInimigo = salaPanel.getLabelHpInimigo();
     	JProgressBar barraHpInimigo = salaPanel.getBarraHpInimigo();
+		JLabel imagemInimigo = salaPanel.getLabelImagem();
     	salaPanel.getLabelTexto().setText("Oh não, é o " + nome + " do Reino de " + elemento + "!!");
+		imagemInimigo.setIcon(ImageHandler.imagemInimigo(nome));
     	labelHpInimigo.setText(nome);
+		imagemInimigo.setVisible(true);
     	labelHpInimigo.setVisible(true);
     	barraHpInimigo.setVisible(true);
 		atualizarBarraInimigo(hpInimigo, hpMaxInimigo);
