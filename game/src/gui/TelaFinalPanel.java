@@ -46,7 +46,7 @@ public class TelaFinalPanel extends JPanel {
 	
 	}
 
-	public JButton getbotaoSair() {
+	public JButton getBotaoSair() {
 		return botaoSair;
 	}
 }
