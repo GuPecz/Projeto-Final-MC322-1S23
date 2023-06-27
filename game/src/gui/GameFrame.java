@@ -38,7 +38,7 @@ public class GameFrame extends JFrame {
         getContentPane().setLayout(new CardLayout(0, 0));
         getContentPane().add(cardPanel);
         
-        setIconImage(new ImageIcon("game/assets/outros/icon.png").getImage());
+        setIconImage(new ImageIcon("game/assets/outro/icon.png").getImage());
     }
     
     public JPanel getCardPanel() {
