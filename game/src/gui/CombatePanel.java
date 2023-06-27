@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.JProgressBar;
 
-// NOTA: Isso aqui não é um CombatePanel na real?
 public class CombatePanel extends JPanel {
 	private static final long serialVersionUID = -5030442052142425577L;
     private JButton botaoAtacar;
@@ -35,7 +34,7 @@ public class CombatePanel extends JPanel {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JLabel lblNewLabel = new JLabel("TITULO DO JOGO");
+        JLabel lblNewLabel = new JLabel("TORRE DOS PESADELOS: O LEGADO DE SARAH");
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblNewLabel.setFont(new Font("Monotype Corsiva", Font.BOLD, 49));
