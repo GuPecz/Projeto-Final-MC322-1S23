@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+// gerado com Window Builder
 public class SelecaoSalaPanel extends JPanel {
     private static final long serialVersionUID = -7063787468413315273L;
     private JButton botaoNorte;

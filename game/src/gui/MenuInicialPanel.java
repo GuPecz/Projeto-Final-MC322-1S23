@@ -11,6 +11,7 @@ import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 
+// gerado com Window Builder
 public class MenuInicialPanel extends JPanel {
 	private static final long serialVersionUID = -3720276657713875250L;
 	private JButton botaoJogar;

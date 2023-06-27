@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 
+// gerado com Window Builder
 public class LorePanel extends JPanel {
 	private static final long serialVersionUID = 2120893491843979877L;
 

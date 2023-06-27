@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Insets;
 
-
+// gerado com Window Builder
 public class PedirNomePanel extends JPanel {
 	private static final long serialVersionUID = -5365825153990485201L;
 	private JTextField textFieldNome;
