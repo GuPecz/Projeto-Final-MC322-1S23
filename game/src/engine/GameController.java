@@ -196,7 +196,7 @@ public class GameController {
     }
 
     // player foge do combate
-    public void fugir() {
+    private void fugir() {
         view.mostrarDirecoesPossiveis(model.getDirecoesPossiveis());
         view.removerInimigo();
         view.resetarImagem();
@@ -209,7 +209,7 @@ public class GameController {
     }
 
     // casos para quando os botoes do panel da sala sao pressionados
-    public void botaoSalaPressionado(String botaoPressionado) {
+    private void botaoSalaPressionado(String botaoPressionado) {
         switch (botaoPressionado) {
             case "Ataque":
             case "Magia":
@@ -239,14 +239,14 @@ public class GameController {
     }
 
     // playere pega o item
-    public void pegarItem() {
+    private void pegarItem() {
         model.pegarItem();
         view.mostrarDirecoesPossiveis(model.getDirecoesPossiveis());
         view.resetarImagem();
     }
 
     // player descarta o item
-    public void descartarItem() {
+    private void descartarItem() {
         model.descartarItem();
         view.mostrarDirecoesPossiveis(model.getDirecoesPossiveis());
         view.resetarImagem();
@@ -260,7 +260,7 @@ public class GameController {
     }
 
     // movimenta o protagonista na direcao
-    public void movimentarProtagonista(String direcao) {
+    private void movimentarProtagonista(String direcao) {
         model.movimentacao(direcao);
         view.habilitarBotoesSala();
         gerarSala();
@@ -278,7 +278,7 @@ public class GameController {
     }
 
     // executa a acao de combate
-    public void executarAcao(String acao) {
+    private void executarAcao(String acao) {
         int[] valoresBarra;
         String msgUsoProtag, msgUsoInimigo;
         try {
