@@ -9,6 +9,7 @@ import dados.LeituraImagem;
 import gui.*;
 
 public class GameView {
+	// atributos (panels e frames)
 	private GameFrame gameFrame;
 	private MenuInicialPanel menuInicialPanel;
 	private ConfigPanel configPanel;
@@ -19,6 +20,7 @@ public class GameView {
 	private TelaFinalPanel telaFinalPanel;
 	private TelaFinalPanelGameOver telaFinalPanelGameOver;
 
+	// construtor
 	public GameView() {
 		gameFrame = new GameFrame();
 		menuInicialPanel = new MenuInicialPanel();
@@ -39,6 +41,7 @@ public class GameView {
 		addPainelPrincipal(telaFinalPanelGameOver, "gameOver");
 	}
 
+	// mostra a imagem do item (SalaPanel)
 	public void mostrarItem(String item) {
         if (item != null) {
             salaPanel.getLabelTexto().setText("Voce encontrou um(a) " + item + "! Deseja pegar?");
@@ -53,11 +56,13 @@ public class GameView {
         }
 	}
 
+	// mostra as mensagens de uso das acoes do player e do inimigo (SalaPanel)
 	public void displayMensagemUso(String msgPlayer, String msgInimigo) {
 		salaPanel.getLabelTexto().setText("<html>" + (msgPlayer + "<br>" +
 										  msgInimigo).replaceAll(" ", "&nbsp;") + "</html>");
 	}
 
+	// seta os botoes para mostrar as direcoes disponiveis para andar (SalaPanel)
 	public void mostrarDirecoesPossiveis(boolean[] direcoesDisponiveis) {
 		JButton[] botoes = {salaPanel.getBotao1(), salaPanel.getBotao2(), salaPanel.getBotao3(), salaPanel.getBotao4()};
         String[] direcoes = {"Frente", "Tras", "Cima", "Baixo"};
@@ -76,6 +81,7 @@ public class GameView {
 		labelTexto.setText(labelTexto.getText() + " Para onde deseja ir?");
 	}
 
+	// mostra os comandos de batalha (SalaPanel)
 	private void mostrarBotoesBatalha() {
 		salaPanel.getBotao1().setText("Ataque");
 		salaPanel.getBotao2().setText("Magia");
@@ -83,13 +89,25 @@ public class GameView {
 		salaPanel.getBotao4().setText("Fugir");
 	}
 
+	// deixa a primeira letra da string maiuscula
+	private void capitalizar(String s) {
+		Character.toUpperCase(s.charAt(0));
+	}
+
+	// coloca o texto no labelTexto (SalaPanel)
+	public void atualizarTextoSala(String texto) {
+		salaPanel.getLabelTexto().setText(texto);
+	}
+
+	// mostra informacoes do inimigo (SalaPanel)
 	public void mostrarInimigo(String nome, String elemento, int hpInimigo, int hpMaxInimigo) {
+		capitalizar(elemento);
 		JLabel labelHpInimigo = salaPanel.getLabelHpInimigo();
     	JProgressBar barraHpInimigo = salaPanel.getBarraHpInimigo();
 		JLabel imagemInimigo = salaPanel.getLabelImagem();
-    	salaPanel.getLabelTexto().setText("Oh não, é o " + nome + " do Reino de " + elemento + "!!");
+    	salaPanel.getLabelTexto().setText("Oh nao, eh o/a " + nome + " do Reino de " + elemento + "!!");
 		imagemInimigo.setIcon(LeituraImagem.imagemInimigo(nome));
-    	labelHpInimigo.setText(nome);
+    	labelHpInimigo.setText(nome + " do Reino de " + elemento);
 		imagemInimigo.setVisible(true);
     	labelHpInimigo.setVisible(true);
     	barraHpInimigo.setVisible(true);
@@ -97,15 +115,18 @@ public class GameView {
 		mostrarBotoesBatalha();
 	}
 
+	// mostra andar e sala onde o player esta (SalaPanel)
 	public void atualizarDisplaySala(int andar, int sala) {
 		salaPanel.getLabelPosicao().setText(String.format("Andar %d, Sala %d", andar, sala));
 	}
 
+	// remove o inimigo (SalaPanel)
 	public void removerInimigo() {
         salaPanel.getLabelHpInimigo().setVisible(false);
         salaPanel.getBarraHpInimigo().setVisible(false);
 	}
 
+	// mostra o loot do inimigo e mensagem de inimigo derrotado (SalaPanel)
 	public void mostrarInimigoDerrotado(String nome, String item) {
 		mostrarItem(item);
 		salaPanel.getLabelTexto().setText(nome + " derrotado!" + " Ele estava carregando um/a " + 
@@ -113,53 +134,83 @@ public class GameView {
         removerInimigo();
 	}
 
+	// atualiza a barra de vida do inimigo (SalaPanel)
 	private void atualizarBarraInimigo(int vidaInimigo, int vidaMaxInimigo) {
 		int porcentagem = Math.max(1, (int) (((double) vidaInimigo) / vidaMaxInimigo * 100));
 		salaPanel.getBarraHpInimigo().setValue(porcentagem);
 	}
-
+	
+	// atualiza as barras de vida e mana do player (SalaPanel)
 	private void atualizarBarrasProtagonista(int vidaProtag, int vidaMaxProtag,
 											 int manaProtag, int manaMaxProtag) {
 		salaPanel.getBarraHp().setValue((int) (((double) vidaProtag) / vidaMaxProtag * 100));
 		salaPanel.getBarraMp().setValue((int) (((double) manaProtag) / manaMaxProtag * 100));
 	}
 
+	// atualiza barras do player e inimigo
 	public void atualizarBarras(int vidaProtag, int vidaMaxProtag, int vidaInimigo, int vidaMaxInimigo,
 								int manaProtag, int manaMaxProtag) {
 		atualizarBarrasProtagonista(vidaProtag, vidaMaxProtag, manaProtag, manaMaxProtag);
 		atualizarBarraInimigo(vidaInimigo, vidaMaxInimigo);
 	}
 
+	// mostra as direcoes possiveis e mensagem de sala vazia (SalaPanel)
 	public void mostrarSalaVazia(boolean[] direcoesDisponiveis) {
 		mostrarDirecoesPossiveis(direcoesDisponiveis);
 		salaPanel.getLabelTexto().setText("Essa sala esta vazia." + salaPanel.getLabelTexto().getText());
 	}
 
+	// remove a imagem no labelImagem (SalaPanel)
 	public void resetarImagem() {
 		salaPanel.getLabelImagem().setVisible(false);
 	}
 
+	// muda o conteudo dos botoes dependendo do parametro (SalaPanel)
+	public void mudarDisplayBotoesSala(String display) {
+		String novoTexto[] = null;
+		JButton[] botoes = salaPanel.getListaBotoes();
+		switch (display) {
+			case "Ataque":
+				novoTexto = new String[] {"Soco", "Espada", "Arco", "Voltar"};
+				break;
+			case "Magia":
+				novoTexto = new String[] {"Magia de Fogo", "Magia de Agua", "Magia de Vento", "Voltar"};
+				break;
+			case "Pocao":
+				novoTexto = new String[] {"Pocao de Vida", "Pocao de Mana", "Pocao de Forca", "Voltar"};
+				break;
+			case "Voltar":
+				novoTexto = new String[] {"Ataque", "Magia", "Pocao", "Fugir"};
+				break;
+		}
+		for (int i = 0; i < botoes.length; i++)
+			botoes[i].setText(novoTexto[i]);
+	}
+
+	// habilita todos os botoes (SalaPanel)
 	public void habilitarBotoesSala() {
 		JButton[] botoes = {salaPanel.getBotao1(), salaPanel.getBotao2(), salaPanel.getBotao3(), salaPanel.getBotao4()};
 		for (JButton botao: botoes)
 			botao.setEnabled(true);
 	}
 	
+	// inicializa o frame e mostra a tela inicial
 	public void showFrame() {
 		mostrarPanel("telaInicial");
         gameFrame.setVisible(true);
 	}
 	
+	// adiciona o painel e seta seu nome no cardPanel do gameFrame
 	public void addPainelPrincipal(JPanel painel, String nome) {
 		gameFrame.getCardPanel().add(painel, nome);
 	}
 	
+	// mostra o panel com o nome especificado
 	public void mostrarPanel(String nome) {
 		gameFrame.getCardLayout().show(gameFrame.getCardPanel(), nome);
 	}
 	
 	// getters
-
 	public ConfigPanel getConfigPanel() {
 		return configPanel;
 	}
