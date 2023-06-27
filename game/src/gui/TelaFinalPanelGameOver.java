@@ -29,7 +29,7 @@ public class TelaFinalPanelGameOver extends JPanel {
 		JLabel lblNewLabel = new JLabel("GAME OVER");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        lblNewLabel.setFont(new Font("Monotype Corsiva", Font.BOLD, 49));
+        lblNewLabel.setFont(new Font("Arial", Font.BOLD, 49));
         lblNewLabel.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
         add(lblNewLabel);
         

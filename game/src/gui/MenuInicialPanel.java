@@ -40,7 +40,7 @@ public class MenuInicialPanel extends JPanel {
         JLabel lblNewLabel = new JLabel("<html>TORRE DOS PESADELOS:<br>O LEGADO DE SARAH");
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        lblNewLabel.setFont(new Font("Monotype Corsiva", Font.BOLD, 43));
+        lblNewLabel.setFont(new Font("Arial", Font.BOLD, 35));
         lblNewLabel.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
         add(lblNewLabel);
         

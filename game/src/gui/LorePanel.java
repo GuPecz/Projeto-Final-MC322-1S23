@@ -46,7 +46,7 @@ public class LorePanel extends JPanel {
 	    		+ "  Por favor, eles usam uma torre como covil, derrote o Ancião!</html>");
 	    labelLore.setHorizontalAlignment(SwingConstants.CENTER);
 	    labelLore.setAlignmentX(Component.CENTER_ALIGNMENT);
-	    labelLore.setFont(new Font("Monotype Corsiva", Font.BOLD, 20));
+	    labelLore.setFont(new Font("Arial", Font.BOLD, 15));
 	    labelLore.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
 	    add(labelLore);
 	    
