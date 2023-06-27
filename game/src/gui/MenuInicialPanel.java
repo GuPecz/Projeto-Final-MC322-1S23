@@ -36,10 +36,10 @@ public class MenuInicialPanel extends JPanel {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JLabel lblNewLabel = new JLabel("TITULO DO JOGO");
+        JLabel lblNewLabel = new JLabel("\"<html>TORRE DOS PESADELOS:<br>O LEGADO DE SARAH");
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        lblNewLabel.setFont(new Font("Monotype Corsiva", Font.BOLD, 49));
+        lblNewLabel.setFont(new Font("Monotype Corsiva", Font.BOLD, 30));
         lblNewLabel.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
         add(lblNewLabel);
         
