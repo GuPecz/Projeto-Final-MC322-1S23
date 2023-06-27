@@ -1,10 +1,6 @@
 package engine;
 
 import java.io.*;
-import java.util.Formatter;
-import java.util.NoSuchElementException;
-
-import javax.swing.text.PlainDocument;
 
 public class Score {
     /* Atributos */
@@ -41,7 +37,7 @@ public class Score {
 
     public static void escreverScore() {
         Score.calcularScore();
-        String nomeArquivo = "score.text";
+        String nomeArquivo = "score.txt";
         String texto = String.format("Inimigos eliminados = %d\nDano recebido = %d\nDano causado = %d\nSalas visitadas = %d"
             + "\nItens = %d\n\nScore = %d", inimigosEliminados, danoRecebido, danoCausado, qtdSalasVisitadas, qtdItensColetado, score);;
         try(BufferedWriter output = new BufferedWriter(new FileWriter(new File(nomeArquivo)))) {
