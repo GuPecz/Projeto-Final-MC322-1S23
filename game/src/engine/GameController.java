@@ -120,6 +120,7 @@ public class GameController {
     public void fugir() {
         view.mostrarDirecoesPossiveis(model.getDirecoesPossiveis());
         view.removerInimigo();
+        view.resetarImagem();
     }
 
     private void mostrarItem() {

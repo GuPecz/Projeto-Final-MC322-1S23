@@ -23,6 +23,7 @@ public class GameModel {
     /* Retorna o loot do inimigo e remove ele da sala */
     public String inimigoMorreu() {
         String item = salaAtual.getInimigo().getLoot();
+        pegarItem();
         salaAtual.setInimigo(null);
         Score.incrementarInimigosEliminados();
         protagonista.resetarStatus();
@@ -77,10 +78,10 @@ public class GameModel {
     public void pegarItem() {
         if (salaAtual.getItem() != null)
             protagonista.coletarItem(salaAtual.getItem());
-        // else if (salaAtual.getInimigo() != null) {
-        //     protagonista.coletarItem(salaAtual.getInimigo().getLoot());
-        //     salaAtual.setInimigo(null);
-        // }
+        else if (salaAtual.getInimigo() != null) {
+            protagonista.coletarItem(salaAtual.getInimigo().getLoot());
+            salaAtual.setInimigo(null);
+        }
         Score.incrementarQtdItensColetado();
         descartarItem();
     }
