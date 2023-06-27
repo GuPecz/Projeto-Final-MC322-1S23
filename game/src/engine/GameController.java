@@ -129,7 +129,6 @@ public class GameController {
     }
 
     public void pegarItem() {
-        //Score.incrementarLootColetado();
         model.pegarItem();
         view.mostrarDirecoesPossiveis(model.getDirecoesPossiveis());
         view.resetarImagem();
@@ -168,20 +167,20 @@ public class GameController {
         String msgUsoProtag, msgUsoInimigo;
         try {
             msgUsoProtag = model.executarAcaoProtagonista(acao);
+            msgUsoInimigo = model.executarAcaoInimigo();
+            valoresBarra = model.getVidaMana();
+            view.atualizarBarras(valoresBarra[0], valoresBarra[1], valoresBarra[2],
+                                 valoresBarra[3], valoresBarra[4], valoresBarra[5]);
+            view.displayMensagemUso(msgUsoProtag, msgUsoInimigo);
             if (! model.getSalaAtual().getInimigo().vivo()) {
                 inimigoDerrotado();
                 return;
             }
-            msgUsoInimigo = model.executarAcaoInimigo();
             if (! model.getProtagonista().vivo()) {
                 view.mostrarPanel("gameOver");
                 Score.escreverScore();
                 return;
             }
-            valoresBarra = model.getVidaMana();
-            view.atualizarBarras(valoresBarra[0], valoresBarra[1], valoresBarra[2],
-                                 valoresBarra[3], valoresBarra[4], valoresBarra[5]);
-            view.displayMensagemUso(msgUsoProtag, msgUsoInimigo);
         } catch (AcaoIndisponivelException e) {
             view.getSalaPanel().getLabelTexto().setText(e.getMessage());
         }

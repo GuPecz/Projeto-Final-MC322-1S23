@@ -1,7 +1,0 @@
-** CRIAR INTERFACE **
-Adicionar imagens
-Mostrar e gravar score
-Quitar do jogo depois de acabar
-Adicionar titulo
-- Adicionar icone 
-- Balancear

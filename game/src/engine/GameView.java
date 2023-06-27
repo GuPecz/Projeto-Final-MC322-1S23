@@ -65,7 +65,6 @@ public class GameView {
 		JButton[] botoes = {salaPanel.getBotao1(), salaPanel.getBotao2(), salaPanel.getBotao3(), salaPanel.getBotao4()};
         String[] direcoes = {"Frente", "Tras", "Cima", "Baixo"};
 		JLabel labelTexto = salaPanel.getLabelTexto();
-        // frente, tras, cima, baixo
         for (int i = 0; i  < direcoes.length; i++) {
             botoes[i].setVisible(true);
             botoes[i].setText(direcoes[i]);

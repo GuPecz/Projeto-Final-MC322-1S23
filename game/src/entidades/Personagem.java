@@ -3,7 +3,7 @@ package entidades;
 import combate.Acao;
 import combate.Ataque;
 import combate.EfeitoStatus;
-import dados.CsvHandler;
+import dados.LeituraCsv;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +31,9 @@ public abstract class Personagem {
 
     /* Adicionas as acoes a listaAcoes do personagem */
     private void importarAcoes() {
-        for (Ataque atq: CsvHandler.getAtaques(nome))
+        for (Ataque atq: LeituraCsv.getAtaques(nome))
             listaAcoes.add(atq);
-        for (EfeitoStatus es: CsvHandler.getEfeitosStatus(nome))
+        for (EfeitoStatus es: LeituraCsv.getEfeitosStatus(nome))
             listaAcoes.add(es);
     }
 

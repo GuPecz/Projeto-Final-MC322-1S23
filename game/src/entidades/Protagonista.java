@@ -53,12 +53,12 @@ public class Protagonista extends Personagem {
             case "Magia de Agua":
                 if (! getListaMagias().get(1).getHabilitado())
                     throw new AcaoIndisponivelException("Voce ainda nao encontrou o Pergaminho de Agua");
-                msgUso = listaMagias.get(1).getMsgUso();
+                msgUso = listaMagias.get(1).executar(this, inimigo);
                 break;
             case "Magia de Vento":
                 if (! getListaMagias().get(2).getHabilitado())
                     throw new AcaoIndisponivelException("Voce ainda nao encontrou o Pergaminho de Vento");
-                msgUso = listaMagias.get(2).getMsgUso();
+                msgUso = listaMagias.get(2).executar(this, inimigo);
                 break;
             case "Soco":
                 msgUso = getListaAcoes().get(2).executar(this, inimigo);
@@ -102,9 +102,9 @@ public class Protagonista extends Personagem {
         this.mp = this.mpMax = mpMax;
         inventario = new Inventario();
         listaMagias = new ArrayList<Magia>();
-        listaMagias.add(new Magia("Magia de Fogo", "Voce queima o/a %s, causando %d de dano!", "fogo", 20));
-        listaMagias.add(new Magia("Magia de Agua", "Voce cria uma bolha ao redor do/da %s, causando %d de dano!", "agua", 20));
-        listaMagias.add(new Magia("Magia de Vento", "Voce lança uma rajada de vento no/na %s, causando %d de dano!", "vento", 20));
+        listaMagias.add(new Magia("Magia de Fogo", "Voce queima o/a %s, causando %d de dano!", 150, "fogo", 20));
+        listaMagias.add(new Magia("Magia de Agua", "Voce cria uma bolha ao redor do/da %s, causando %d de dano!", 150, "agua", 20));
+        listaMagias.add(new Magia("Magia de Vento", "Voce lança uma rajada de vento no/na %s, causando %d de dano!", 150, "vento", 20));
     }
 
     /* toString() */
@@ -124,6 +124,10 @@ public class Protagonista extends Personagem {
      */
     public void regenerarMana(int mana) {
         mp += mana;
+    }
+
+    public void reduzirMana(int mana) {
+        mp -= mana;
     }
 
     /* Volta atq, def e multiplicadores ao normal (deve ser chamado ao final de uma luta) */

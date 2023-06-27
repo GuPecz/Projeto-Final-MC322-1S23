@@ -70,7 +70,6 @@ public class CombatePanel extends JPanel {
         
         Component verticalStrut_1 = Box.createVerticalStrut(20);
         add(verticalStrut_1);
-        //        add(Box.createVerticalStrut(40));
         
         JLabel lblNewLabel_1 = new JLabel("HP");
         lblNewLabel_1.setMaximumSize(new Dimension(500, 2147483647));

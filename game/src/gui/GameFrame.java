@@ -41,7 +41,6 @@ public class GameFrame extends JFrame {
         musicThread.start();
         
         setIconImage(new ImageIcon("game/assets/outros/icon.png").getImage());
-    	// cardLayout.show(cardPanel, "screen");
     }
     
     public JPanel getCardPanel() {

@@ -1,6 +1,6 @@
 package mundo;
 
-import dados.CsvHandler;
+import dados.LeituraCsv;
 import entidades.Inimigo;
 
 public class Mapa {
@@ -46,7 +46,7 @@ public class Mapa {
      * Inicializa as salas com seus conteúdos
      */
     private void inicializaSalas() {
-        String[][] dados = CsvHandler.getDadosSalas(ordem);
+        String[][] dados = LeituraCsv.getDadosSalas(ordem);
         String[] conteudo;
         /*
         * dados[i][j] = "", se a sala ij for vazia
@@ -64,7 +64,7 @@ public class Mapa {
 
                     // Sala com inimigo
                     case "inimigo":
-                    String[] dadosInimigo = CsvHandler.getDadosInimigo(conteudo[1]);
+                    String[] dadosInimigo = LeituraCsv.getDadosInimigo(conteudo[1]);
                     /*
                      * dadosinimigo[i] = 
                      * nome,     i = 0

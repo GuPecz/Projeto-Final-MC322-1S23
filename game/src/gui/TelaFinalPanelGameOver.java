@@ -11,9 +11,6 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 
 public class TelaFinalPanelGameOver extends JPanel {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JButton botaoSair;
 	

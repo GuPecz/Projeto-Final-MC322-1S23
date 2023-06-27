@@ -30,12 +30,6 @@ public abstract class Acao {
         habilitado = true;
     }
 
-    /* Desabilita o ataque */
-    // TODO - remover se n estiver sendo usado
-    public void desabilitar() {
-        habilitado = false;
-    }
-
     /* toString() */
     public String toString() {
         return "Acao:\n\tnome: " + nome

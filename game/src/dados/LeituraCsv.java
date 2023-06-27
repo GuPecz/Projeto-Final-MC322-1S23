@@ -12,9 +12,7 @@ import combate.Buff;
 import combate.Debuff;
 import combate.EfeitoStatus;
 
-/* TODO - implementacoes estao parecidas, deve dar pra reutilizar, boa sorte se alguem for tentar */
-
-public class CsvHandler {
+public class LeituraCsv {
     /* Fecha o arquivo referenciado pelo BufferedReader br */
     private static void fecharArquivo(BufferedReader br) {
         if (br != null) {
