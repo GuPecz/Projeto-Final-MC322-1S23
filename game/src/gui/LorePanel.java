@@ -28,7 +28,7 @@ public class LorePanel extends JPanel {
 		 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-	    labelLore = new JLabel("<html>%s, o reino precisa de você!<br><br>"
+	    labelLore = new JLabel("<html>%s, herdeiro de Sarah, o reino precisa de você!<br><br>"
 	    		+ "  Terríveis vilões e seus lacaios estão aterrorizando a população.<br>"
 	    		+ "  \r<br>"
 	    		+ "  Em tempos dificuldade, um homem ganancioso extorque os necessitados dizendo ter a salvação. \r<br>"
@@ -39,6 +39,7 @@ public class LorePanel extends JPanel {
 	    		+ "  Mesmo esta criatura conseguiu reunir lacaios que tentam imitá-la.\r<br>"
 	    		+ "  \r<br>"
 	    		+ "  E a raiz desse mal... Um aterrador ancião que leva a mente de quem o ouve a mais insana confusão.\r<br>"
+				+ "  Sem contar a besta infernal que o acompanha!<br>"
 	    		+ "  Tolamente alguns o seguem como discípulos na falsa esperança de entender seus discursos incompreensíveis...\r<br>"
 	    		+ "  \r<br>"
 	    		+ "  Por favor, eles usam uma torre como covil, derrote o Ancião!</html>");
@@ -74,7 +75,7 @@ public class LorePanel extends JPanel {
 
 /*
  * Texto da lore
- * (nome), o reino precisa de você!
+ * (nome), herdeiro de Sarah, o reino precisa de você!
  * 
  * Terríveis vilões e seus lacaios estão aterrorizando a população.
  * 
@@ -86,6 +87,7 @@ public class LorePanel extends JPanel {
  * Mesmo esta criatura conseguiu reunir lacaios que tentam imitá-la.
  * 
  * E a raiz desse mal... Um aterrador ancião que leva a mente de quem o ouve a mais insana confusão.
+ * Sem contar a besta infernal que o acompanha!
  * Tolamente alguns o seguem como discípulos na falsa esperança de entender seus discursos incompreensíveis.
  * 
  * Por favor, eles usam uma torre como covil, invada-a e nos salve!
