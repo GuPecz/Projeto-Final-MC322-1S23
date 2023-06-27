@@ -132,6 +132,11 @@ public class Protagonista extends Personagem {
         mp += mana;
     }
 
+    /*
+     * Aumenta a mana do protagonista
+     * PARAMETROS:
+     * mana -- quantidade a ser reduzida
+     */
     public void reduzirMana(int mana) {
         mp -= mana;
     }
