@@ -12,7 +12,8 @@ import javax.swing.JLabel;
 
 // gerado com Window Builder
 public class TelaFinalPanelGameOver extends JPanel {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 301608804770619286L;
+
 	private JButton botaoSair;
 	
 	public TelaFinalPanelGameOver() {
@@ -39,8 +40,8 @@ public class TelaFinalPanelGameOver extends JPanel {
         panel.add(botaoSair);
         botaoSair.setFont(new Font("Tahoma", Font.PLAIN, 33));
         botaoSair.setAlignmentX(Component.CENTER_ALIGNMENT);
-        botaoSair.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
-        Component verticalStrut_1 = Box.createVerticalStrut(40);
+        botaoSair.setMaximumSize(new Dimension(250, 50));
+        Component verticalStrut_1 = Box.createVerticalStrut(200);
         panel.add(verticalStrut_1);
 	
 	}

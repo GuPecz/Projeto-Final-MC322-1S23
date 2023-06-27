@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 
 // gerado com Window Builder
 public class TelaFinalPanel extends JPanel {
-	private static final long serialVersionUID = -206352147739041979L;
+	private static final long serialVersionUID = 9153835150039829614L;
 
 	private JButton botaoSair;
 	
@@ -26,7 +26,7 @@ public class TelaFinalPanel extends JPanel {
 		int buttonWidth = 500;
 		
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		JLabel lblNewLabel = new JLabel("VITÓRIA");
+		JLabel lblNewLabel = new JLabel("VITORIA!");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblNewLabel.setFont(new Font("Monotype Corsiva", Font.BOLD, 49));
@@ -40,14 +40,14 @@ public class TelaFinalPanel extends JPanel {
         panel.add(botaoSair);
         botaoSair.setFont(new Font("Tahoma", Font.PLAIN, 33));
         botaoSair.setAlignmentX(Component.CENTER_ALIGNMENT);
-        botaoSair.setMaximumSize(new Dimension(buttonWidth, Integer.MAX_VALUE));
-        Component verticalStrut_1 = Box.createVerticalStrut(40);
+        botaoSair.setMaximumSize(new Dimension(250, 50));
+        Component verticalStrut_1 = Box.createVerticalStrut(200);
         panel.add(verticalStrut_1);
 	
 	}
 
-	public JButton getBotaoSair() {
+	public JButton getbotaoSair() {
 		return botaoSair;
 	}
-	
 }
+
