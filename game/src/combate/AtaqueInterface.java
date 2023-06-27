@@ -3,9 +3,12 @@ package combate;
 import entidades.Personagem;
 
 public interface AtaqueInterface {
-    String executar(Personagem usuario, Personagem oponente);
+    /* Executa o ataque */
+    public String executar(Personagem usuario, Personagem oponente);
 
-    boolean podeExecutar(Personagem usuario);
+    /* Retorna boolean indicando se ataque pode ser executado */
+    public boolean podeExecutar(Personagem usuario);
 
-    double calcularMultiplicadorAleatorio();
+    /* Calcula o multiplicador do ataque */
+    public double calcularMultiplicador();
 }

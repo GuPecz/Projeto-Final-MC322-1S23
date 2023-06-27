@@ -43,15 +43,16 @@ public class Ataque extends Acao implements AtaqueInterface {
         return String.format(getMsgUso(), dano);
     }
 
-    public double calcularMultiplicadorAleatorio() {
+    /* Calcula um multiplicador aleatorio */
+    private double calcularMultiplicadorAleatorio() {
         Random num = new Random();
         this.multiplicador = 0.5 + num.nextDouble();
         return this.multiplicador;
     }
 
+    /* Retorna boolean indicando se o usuário possui o ataque na lista de ações disponíveis */
     public boolean podeExecutar(Personagem usuario) {
-        // Verifica se o usuário possui o ataque na lista de ações disponíveis
-        return usuario.getListaAcoes().contains(this);
+        return getHabilitado() && usuario.getListaAcoes().contains(this);
     }
 
     /* toString() */
@@ -69,6 +70,12 @@ public class Ataque extends Acao implements AtaqueInterface {
 
     public void setMultiplicador(double multiplicador) {
         this.multiplicador = multiplicador;
+    }
+
+    /* Calcula o multiplicador do ataque */
+    @Override
+    public double calcularMultiplicador() {
+        return calcularMultiplicadorAleatorio();
     }
 
 }
