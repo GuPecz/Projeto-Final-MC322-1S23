@@ -46,7 +46,7 @@ public class Inventario {
 
     /* Usa e reduz em 1 o numero de pocoes de vida */
     public void usarPocaoHp(Personagem personagem) {
-        personagem.regenerarVida((int) (personagem.getHpMax() * 0.5));
+        personagem.regenerarVida((int) (personagem.getHpMax() * 1));
         numPocoesHp--;
     }
 
