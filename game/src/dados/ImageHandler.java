@@ -1,12 +1,12 @@
-package dados;
+// package dados;
 
-import java.awt.Image;
+// import java.awt.Image;
 
-public class ImageHandler {
-    public static Icon imagemInimigo() {
+// public class ImageHandler {
+//     public static Icon imagemInimigo() {
 
-    }
-    public static Icon imagemItem() {
+//     }
+//     public static Icon imagemItem() {
 
-    }
-}
+//     }
+// }

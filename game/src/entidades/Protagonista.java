@@ -108,6 +108,7 @@ public class Protagonista extends Personagem {
     }
 
     /* toString() */
+    @Override
     public String toString() {
         String str = super.toString().replaceFirst("Personagem", "Protagonista") +
             "\n\tmp: " + mp + "\n\tmpMax: " + mpMax + "\n\tlistaMagias:";

@@ -1,11 +1,13 @@
 package combate;
 
+import java.util.Random;
+
 import engine.Score;
 import entidades.Inimigo;
 import entidades.Personagem;
 import entidades.Protagonista;
 
-public class Ataque extends Acao {
+public class Ataque extends Acao implements AtaqueInterface{
     /* Atributos */
     private double multiplicador;
 
@@ -41,7 +43,19 @@ public class Ataque extends Acao {
         return String.format(getMsgUso(), dano);
     }
 
+    public double calcularMultiplicadorAleatorio() {
+        Random num = new Random();
+        this.multiplicador = 0.5 + num.nextDouble();
+        return this.multiplicador;
+    }
+
+    public boolean podeExecutar(Personagem usuario) {
+        // Verifica se o usuário possui o ataque na lista de ações disponíveis
+        return usuario.getListaAcoes().contains(this);
+    }
+
     /* toString() */
+    @Override
     public String toString() {
         String str = super.toString().replaceFirst("Acao", "Ataque");
         str += "\n\tmultiplicador: " + multiplicador;
