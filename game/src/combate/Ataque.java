@@ -7,7 +7,7 @@ import entidades.Inimigo;
 import entidades.Personagem;
 import entidades.Protagonista;
 
-public class Ataque extends Acao implements AtaqueInterface{
+public class Ataque extends Acao implements AtaqueInterface {
     /* Atributos */
     private double multiplicador;
 

@@ -41,8 +41,8 @@ public class GameController {
     
     private void addListenersMenuNome() {
         PedirNomePanel pedirNomePanel = view.getPedirNomePanel();
-    	pedirNomePanel.getBotaoVoltar().addActionListener(new ListenerVoltarMenuInicial());
-    	pedirNomePanel.getBotaoConfirmar().addActionListener(new ActionListener () {
+        pedirNomePanel.getBotaoVoltar().addActionListener(new ListenerVoltarMenuInicial());
+        pedirNomePanel.getBotaoConfirmar().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 // pega o label com o texto da lore
                 JLabel labelLore = view.getLorePanel().getLabelLore();
@@ -59,17 +59,17 @@ public class GameController {
 
     private void addListenersMenuInicial() {
         MenuInicialPanel menuInicialPanel = view.getMenuInicialPanel();
-        menuInicialPanel.getBotaoJogar().addActionListener(new ActionListener () {
+        menuInicialPanel.getBotaoJogar().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 view.mostrarPanel("pedirNome");
             }
         });
-        menuInicialPanel.getBotaoConfig().addActionListener(new ActionListener () {
+        menuInicialPanel.getBotaoConfig().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 view.mostrarPanel("config");
             }
         });
-        menuInicialPanel.getBotaoSair().addActionListener(new ActionListener () {
+        menuInicialPanel.getBotaoSair().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 System.exit(0);
             }
@@ -85,7 +85,7 @@ public class GameController {
     }
 
     private void addListenersMenuLore() {
-        view.getLorePanel().getBotaoContinuar().addActionListener(new ActionListener () {
+        view.getLorePanel().getBotaoContinuar().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 gerarSala();
                 view.mostrarPanel("sala");
@@ -94,12 +94,12 @@ public class GameController {
     }
 
     private void addListenersMenuFinal() {
-        view.getTelaFinalPanelGameOver().getbotaoSair().addActionListener(new ActionListener () {
+        view.getTelaFinalPanelGameOver().getbotaoSair().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 System.exit(0);
             }
         });
-        view.getTelaFinalPanel().getBotaoSair().addActionListener(new ActionListener () {
+        view.getTelaFinalPanel().getBotaoSair().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 System.exit(0);
             }
@@ -156,7 +156,7 @@ public class GameController {
         String nomeInimigo = model.getSalaAtual().getInimigo().getNome();
         view.mostrarInimigoDerrotado(nomeInimigo,
                                      model.inimigoMorreu());
-        if (nomeInimigo.equals("Anciao")){
+        if (nomeInimigo.equals("Anciao")) {
             view.mostrarPanel("telaFinal");
             Score.escreverScore();
         }

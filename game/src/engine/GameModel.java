@@ -14,7 +14,7 @@ public class GameModel {
         inicializarProtagonista();
         mapa = new Mapa();
         salaAtual = mapa.getSalas()[mapa.getLocalizacaoProtagonista()[0]][mapa.getLocalizacaoProtagonista()[1]];
-   }
+    }
     
     private void inicializarProtagonista() {
         protagonista = new Protagonista(100, 100, 100, 100);

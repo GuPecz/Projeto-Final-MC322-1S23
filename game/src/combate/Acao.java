@@ -38,9 +38,9 @@ public abstract class Acao {
 
     /* toString() */
     public String toString() {
-        return "Acao:\n\tnome: " + nome + 
-                "\n\thabilitado: " + habilitado +
-                "\n\tmsgUso: " + msgUso;
+        return "Acao:\n\tnome: " + nome
+                + "\n\thabilitado: " + habilitado
+                + "\n\tmsgUso: " + msgUso;
     }
 
     /* Getters e setters */
@@ -51,7 +51,7 @@ public abstract class Acao {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
     public boolean getHabilitado() {
         return habilitado;
     }
