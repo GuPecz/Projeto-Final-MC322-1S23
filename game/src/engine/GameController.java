@@ -139,7 +139,6 @@ public class GameController {
         if (clipMusica != null) {
             FloatControl gainControl = (FloatControl) clipMusica.getControl(FloatControl.Type.MASTER_GAIN);
             float dB = (float) (Math.log(volume) / Math.log(10.0) * 20.0);
-            System.out.println(dB);
             gainControl.setValue(dB);
         }
     }
