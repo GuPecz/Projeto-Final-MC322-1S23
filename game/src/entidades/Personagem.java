@@ -71,7 +71,7 @@ public abstract class Personagem {
      * defesa -- quantidade a ser aumentada
      */
     public void aumentarDefesa(int defesa) {
-        def += defesa;
+        defAtual += defesa;
     }
 
     /*
@@ -80,9 +80,9 @@ public abstract class Personagem {
      * defesa -- quantidade a ser reduzida
      */
     public void reduzirDefesa(int defesa) {
-        def -= defesa;
-        if (this.def <= 0)
-            this.def = 1;
+        defAtual -= defesa;
+        if (this.defAtual <= 0)
+            this.defAtual = 1;
     }
 
     /*
@@ -91,7 +91,7 @@ public abstract class Personagem {
      * atq -- quantidade a ser reduzida
      */
     public void aumentarAtq(int atq) {
-        this.atq += atq;
+        this.atqAtual += atq;
     }
 
     /*
@@ -100,9 +100,9 @@ public abstract class Personagem {
      * atq -- quantidade a ser reduzida
      */
     public void reduzirAtq(int atq) {
-        this.atq -= atq;
-        if (this.atq <= 0)
-            this.atq = 1;
+        this.atqAtual -= atq;
+        if (this.atqAtual <= 0)
+            this.atqAtual = 1;
     }
 
     /* Retorna boolean indicando se o personagem esta vivo */
