@@ -5,7 +5,7 @@
 Projeto final da disciplina MC322, turmas A e B, do 1s2023
 
 ## Documentos
-[Diagrama UML](UML.pdf)
+[Diagrama UML](UML.pdf)<br>
 [Resumo do sistema](resumoSistema.pdf)
 
 ## Integrantes
